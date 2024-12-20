@@ -7,14 +7,14 @@
   </head>
   <body>
     <main>
-      <div class="form-group">
+      <div class="content-group">
         <div id="qr-preview"></div>
       </div>
 
-      <div class="form-group content-group">
-        <label for="qr-content" id="qr-content-label" class="body-s"
-          >QR code content</label
-        >
+      <div class="content-group form-group">
+        <label for="qr-content" id="qr-content-label" class="body-s">
+          QR code content
+        </label>
         <input
           id="qr-content"
           type="text"
@@ -25,10 +25,10 @@
         />
       </div>
 
-      <div class="form-group">
-        <label for="qr-margin" id="qr-margin-label" class="body-s"
-          >Margin</label
-        >
+      <div class="content-group">
+        <label for="qr-margin" id="qr-margin-label" class="body-s">
+          Margin
+        </label>
         <div class="margin-group">
           <input
             id="qr-margin"
@@ -51,7 +51,23 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="content-group form-group">
+        <label for="qr-file-type" id="qr-file-type-label" class="body-s">
+          File type
+        </label>
+        <select
+          id="qr-file-type"
+          class="select"
+          aria-labelledby="qr-file-type-label"
+        >
+          <option value="svg">SVG</option>
+          <option value="webp">WEBP</option>
+          <option value="png">PNG</option>
+          <option value="jpeg">JPEG</option>
+        </select>
+      </div>
+
+      <div class="content-group">
         <button
           id="add-qr"
           type="button"

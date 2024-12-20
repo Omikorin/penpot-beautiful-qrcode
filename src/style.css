@@ -13,7 +13,7 @@ body {
   width: 100%;
 }
 
-.form-group {
+.content-group {
   margin-block-end: var(--spacing-12);
 
   label {
@@ -21,8 +21,9 @@ body {
   }
 }
 
-.content-group {
-  input {
+.form-group {
+  input,
+  select {
     margin-top: 0.2rem;
   }
 }
