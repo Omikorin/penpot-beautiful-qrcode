@@ -17,7 +17,27 @@ body {
   margin-block-end: var(--spacing-12);
 
   label {
-    margin-inline: 0.25rem;
+    margin-inline: 0.125rem;
+  }
+}
+
+.content-group {
+  input {
+    margin-top: 0.2rem;
+  }
+}
+
+.margin-group {
+  display: flex;
+
+  input[type='range'] {
+    flex: 1 1;
+  }
+
+  input[type='number'] {
+    flex: 0 0 auto;
+    margin-left: 20px;
+    width: 55px;
   }
 }
 

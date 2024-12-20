@@ -10,7 +10,7 @@ const options: Options = {
   height: 300,
   type: 'svg',
   data: 'https://links.omikor.in',
-  margin: 0,
+  margin: 10,
 };
 
 const svg = new QRCodeStyling(options);
@@ -30,6 +30,32 @@ document.addEventListener('DOMContentLoaded', () => {
     if (value.length === 0) return;
 
     options.data = value;
+    generateQR();
+  });
+
+  document.querySelector('#qr-margin')?.addEventListener('input', (e) => {
+    const value = (e.target as HTMLInputElement).value;
+
+    if (!value) return;
+
+    const marginInput = document.querySelector(
+      '#qr-margin-value',
+    ) as HTMLInputElement;
+    marginInput.value = value;
+    options.margin = parseInt(value);
+    generateQR();
+  });
+
+  document.querySelector('#qr-margin-value')?.addEventListener('input', (e) => {
+    const value = (e.target as HTMLInputElement).value;
+
+    if (!value) return;
+
+    const marginSlider = document.querySelector(
+      '#qr-margin',
+    ) as HTMLInputElement;
+    marginSlider.value = value;
+    options.margin = parseInt(value);
     generateQR();
   });
 
