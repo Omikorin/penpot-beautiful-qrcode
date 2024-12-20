@@ -67,6 +67,32 @@ document.addEventListener('DOMContentLoaded', () => {
     generateQR();
   });
 
+  document
+    .querySelector('#choose-file-input')
+    ?.addEventListener('input', (e) => {
+      const files = (e.target as HTMLInputElement).files;
+
+      if (!files || files.length === 0) return;
+
+      const file = files[0];
+      const reader = new FileReader();
+
+      reader.addEventListener(
+        'load',
+        () => {
+          options.image = reader.result as string;
+          generateQR();
+        },
+        false,
+      );
+
+      reader.readAsDataURL(file);
+    });
+
+  document.querySelector('#choose-file-btn')?.addEventListener('click', () => {
+    (document.querySelector('#choose-file-input') as HTMLInputElement)?.click();
+  });
+
   document.querySelector('#qr-file-type')?.addEventListener('input', (e) => {
     const value = (e.target as HTMLSelectElement).value as FileExtension;
 
