@@ -52,6 +52,18 @@ body {
   margin-top: var(--spacing-20);
 }
 
+.button-with-icon {
+  height: 33.6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+
+  .button-icon {
+    display: flex;
+  }
+}
+
 #qr-preview {
   background-color: var(--background-quaternary);
   border-radius: var(--spacing-20);
