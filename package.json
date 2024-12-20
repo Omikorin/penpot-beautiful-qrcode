@@ -15,7 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "@penpot/plugin-styles": "1.1.0",
-    "@penpot/plugin-types": "1.1.0"
+    "@penpot/plugin-types": "1.1.0",
+    "qr-code-styling": "^1.8.4"
   },
   "devDependencies": {
     "typescript": "^5.7.2",

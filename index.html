@@ -6,6 +6,36 @@
     <title>Beautiful QR Code</title>
   </head>
   <body>
+    <main>
+      <div class="form-group">
+        <div id="qr-preview"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="qr-content" class="body-s">QR code content</label>
+        <input
+          id="qr-content"
+          type="text"
+          class="input input-full"
+          placeholder="Enter text or URL"
+          aria-label="QR code content"
+          value="https://links.omikor.in"
+        />
+      </div>
+
+      <div class="form-group">
+        <button
+          id="add-qr"
+          type="button"
+          class="input-full"
+          aria-label="Add QR Code"
+          data-appearance="primary"
+        >
+          Add QR Code
+        </button>
+      </div>
+    </main>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
