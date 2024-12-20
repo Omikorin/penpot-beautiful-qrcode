@@ -4,12 +4,25 @@ penpot.ui.open('Beautiful QR Code', `?theme=${penpot.theme}`);
 
 penpot.ui.onMessage<PluginEvent>(async (message) => {
   if (message.type === 'add-qr') {
-    const { data, name } = message.content;
+    const { fileType, data, name } = message.content;
 
     if (!data || !name) return;
 
-    const group = penpot.createShapeFromSvg(data);
-    if (group) group.name = name;
+    if (fileType === 'svg') {
+      const group = penpot.createShapeFromSvg(data);
+      if (group) group.name = name;
+    } else {
+      const mimeType = `image/${fileType}`;
+      const imageData = await penpot.uploadMediaData(
+        name,
+        new Uint8Array(data),
+        mimeType,
+      );
+
+      const shape = penpot.createRectangle();
+      shape.resize(300, 300);
+      shape.fills = [{ fillOpacity: 1, fillImage: imageData }];
+    }
   }
 });
 

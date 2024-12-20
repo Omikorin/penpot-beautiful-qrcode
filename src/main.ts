@@ -1,9 +1,17 @@
-import QRCodeStyling, { type Options } from 'qr-code-styling';
+import QRCodeStyling, {
+  type FileExtension,
+  type Options,
+} from 'qr-code-styling';
 import './style.css';
+import type { PluginConfig } from './types';
 
 // get the current theme from the URL
 const searchParams = new URLSearchParams(window.location.search);
 document.body.dataset.theme = searchParams.get('theme') ?? 'light';
+
+const config: PluginConfig = {
+  fileType: 'svg',
+};
 
 const options: Options = {
   width: 300,
@@ -59,10 +67,26 @@ document.addEventListener('DOMContentLoaded', () => {
     generateQR();
   });
 
+  document.querySelector('#qr-file-type')?.addEventListener('input', (e) => {
+    const value = (e.target as HTMLSelectElement).value as FileExtension;
+
+    if (!value) return;
+
+    config.fileType = value;
+  });
+
   document.querySelector('#add-qr')?.addEventListener('click', async () => {
     if (!svg) return;
 
-    const data = svg._svg?.outerHTML;
+    let data;
+
+    if (config.fileType === 'svg') {
+      data = svg._svg?.outerHTML;
+    } else {
+      // Blob will always be returned in the browser
+      data = (await svg.getRawData(config.fileType)) as Blob;
+      data = await data.arrayBuffer();
+    }
 
     if (!data) return;
 
@@ -70,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         type: 'add-qr',
         content: {
+          fileType: config.fileType,
           data,
           name: 'New QR Code',
         },
@@ -77,6 +102,14 @@ document.addEventListener('DOMContentLoaded', () => {
       '*',
     );
   });
+
+  document
+    .querySelector('#download-qr')
+    ?.addEventListener('click', async () => {
+      if (!svg) return;
+
+      svg.download({ extension: config.fileType, name: 'New QR Code' });
+    });
 });
 
 // Listen plugin.ts messages
