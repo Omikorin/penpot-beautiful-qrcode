@@ -52,11 +52,19 @@
       </div>
 
       <div class="content-group form-group">
-        <label for="choose-file" id="choose-file-label" class="body-s">
+        <label for="choose-file-btn" id="choose-file-label" class="body-s">
           Logo
         </label>
+        <input
+          id="choose-file-input"
+          type="file"
+          accept="image/*"
+          class="input-label-hidden"
+          tabindex="-1"
+          aria-hidden="true"
+        />
         <button
-          id="choose-file"
+          id="choose-file-btn"
           type="button"
           class="input-full button-with-icon"
           aria-label="Upload logo"
