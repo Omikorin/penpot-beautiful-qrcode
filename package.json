@@ -1,0 +1,25 @@
+{
+  "name": "penpot-beautiful-qrcode",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite-live-preview",
+    "build": "tsc && vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Omikorin/penpot-beautiful-qrcode.git"
+  },
+  "author": "Michał Korczak (https://omikor.in)",
+  "license": "ISC",
+  "dependencies": {
+    "@penpot/plugin-styles": "1.1.0",
+    "@penpot/plugin-types": "1.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vite-live-preview": "^0.3.2"
+  }
+}

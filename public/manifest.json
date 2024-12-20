@@ -1,0 +1,6 @@
+{
+  "name": "Beautiful QR Code",
+  "description": "Design vibrant QR codes",
+  "code": "plugin.js",
+  "permissions": ["content:read", "content:write"]
+}
