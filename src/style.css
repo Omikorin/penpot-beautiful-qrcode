@@ -23,7 +23,8 @@ body {
 
 .form-group {
   input,
-  select {
+  select,
+  button {
     margin-top: 0.2rem;
   }
 }
