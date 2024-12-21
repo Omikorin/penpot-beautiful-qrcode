@@ -138,6 +138,8 @@ body {
 
 .accordion-content {
   padding: var(--spacing-8);
+  display: grid;
+  gap: var(--spacing-8);
 }
 
 .color-picker-group {

@@ -26,6 +26,12 @@ const options: Options = {
   dotsOptions: {
     color: '#000000',
   },
+  cornersSquareOptions: {
+    color: '#000000',
+  },
+  cornersDotOptions: {
+    color: '#000000',
+  },
 };
 
 const svg = new QRCodeStyling(options);
@@ -143,6 +149,22 @@ document.addEventListener('DOMContentLoaded', () => {
     ?.addEventListener('input', (e) => {
       const value = (e.target as HTMLInputElement).value;
       options.dotsOptions!.color = value;
+      generateQR();
+    });
+
+  document
+    .querySelector('#qr-corners-square-color')
+    ?.addEventListener('input', (e) => {
+      const value = (e.target as HTMLInputElement).value;
+      options.cornersSquareOptions!.color = value;
+      generateQR();
+    });
+
+  document
+    .querySelector('#qr-corners-dot-color')
+    ?.addEventListener('input', (e) => {
+      const value = (e.target as HTMLInputElement).value;
+      options.cornersDotOptions!.color = value;
       generateQR();
     });
 
