@@ -11,6 +11,7 @@ document.body.dataset.theme = searchParams.get('theme') ?? 'light';
 
 const config: PluginConfig = {
   fileType: 'svg',
+  logoFilename: '',
 };
 
 const options: Options = {
@@ -81,6 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'load',
         () => {
           options.image = reader.result as string;
+          config.logoFilename = file.name;
+          updateLogoUI();
           generateQR();
         },
         false,
@@ -89,8 +92,36 @@ document.addEventListener('DOMContentLoaded', () => {
       reader.readAsDataURL(file);
     });
 
+  const updateLogoUI = () => {
+    const chooseFileBtn = document.querySelector('#choose-file-btn');
+    const logoGroup = document.querySelector('#logo-group');
+    const logoFilename = document.querySelector('#logo-filename');
+
+    if (config.logoFilename) {
+      chooseFileBtn?.classList.add('hidden');
+      logoGroup?.classList.remove('hidden');
+      if (logoFilename) {
+        if (config.logoFilename.length > 30)
+          logoFilename.textContent = `${config.logoFilename.slice(0, 29)}...`;
+        else logoFilename.textContent = config.logoFilename;
+      }
+    } else {
+      chooseFileBtn?.classList.remove('hidden');
+      logoGroup?.classList.add('hidden');
+    }
+  };
+
   document.querySelector('#choose-file-btn')?.addEventListener('click', () => {
     (document.querySelector('#choose-file-input') as HTMLInputElement)?.click();
+  });
+
+  document.querySelector('#remove-logo')?.addEventListener('click', () => {
+    options.image = '';
+    config.logoFilename = '';
+    (document.querySelector('#choose-file-input') as HTMLInputElement).value =
+      '';
+    updateLogoUI();
+    generateQR();
   });
 
   document.querySelector('#qr-file-type')?.addEventListener('input', (e) => {

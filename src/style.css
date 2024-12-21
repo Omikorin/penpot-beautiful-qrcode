@@ -9,6 +9,10 @@ body {
   padding: 10px;
 }
 
+.hidden {
+  display: none;
+}
+
 .input-full {
   width: 100%;
 }
@@ -43,6 +47,29 @@ body {
   }
 }
 
+.logo-group:not(.hidden) {
+  display: flex;
+  gap: var(--spacing-8);
+  width: 100%;
+
+  .logo-display {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    height: 33.6px;
+    padding-left: 0.2rem;
+  }
+
+  .button-with-icon {
+    flex: 1;
+  }
+
+  .button-icon-only {
+    padding: 0 var(--spacing-8);
+  }
+}
+
 .button-group {
   display: grid;
   gap: var(--spacing-8);
@@ -52,7 +79,7 @@ body {
   margin-top: var(--spacing-20);
 }
 
-.button-with-icon {
+.button-with-icon:not(.hidden) {
   height: 33.6px;
   display: flex;
   justify-content: center;

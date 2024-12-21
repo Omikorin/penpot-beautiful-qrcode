@@ -2,6 +2,7 @@ import type { FileExtension } from 'qr-code-styling';
 
 export interface PluginConfig {
   fileType: FileExtension;
+  logoFilename: string;
 }
 
 export interface PluginAddSVGEvent {
