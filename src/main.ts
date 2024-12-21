@@ -23,6 +23,9 @@ const options: Options = {
   backgroundOptions: {
     color: '#ffffff',
   },
+  dotsOptions: {
+    color: '#000000',
+  },
 };
 
 const svg = new QRCodeStyling(options);
@@ -132,6 +135,14 @@ document.addEventListener('DOMContentLoaded', () => {
     ?.addEventListener('input', (e) => {
       const value = (e.target as HTMLInputElement).value;
       options.backgroundOptions!.color = value;
+      generateQR();
+    });
+
+  document
+    .querySelector('#qr-pattern-color')
+    ?.addEventListener('input', (e) => {
+      const value = (e.target as HTMLInputElement).value;
+      options.dotsOptions!.color = value;
       generateQR();
     });
 
