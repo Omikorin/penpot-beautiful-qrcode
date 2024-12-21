@@ -37,7 +37,7 @@ const config: PluginConfig = {
 const options: Options = {
   width: 300,
   height: 300,
-  type: 'svg',
+  type: 'canvas',
   data: 'https://links.omikor.in',
   margin: 10,
 
