@@ -18,7 +18,7 @@ const searchParams = new URLSearchParams(window.location.search);
 document.body.dataset.theme = searchParams.get('theme') ?? 'light';
 
 const config: PluginConfig = {
-  fileType: 'svg',
+  fileType: 'png',
   logoFilename: '',
   background: {
     fill: 'single',
