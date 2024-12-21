@@ -95,6 +95,10 @@ body {
   }
 }
 
+.margin-control {
+  margin-top: var(--spacing-4);
+}
+
 .button-group {
   display: grid;
   gap: var(--spacing-8);
