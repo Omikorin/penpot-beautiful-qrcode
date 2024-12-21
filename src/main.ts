@@ -20,6 +20,9 @@ const options: Options = {
   type: 'svg',
   data: 'https://links.omikor.in',
   margin: 10,
+  backgroundOptions: {
+    color: '#ffffff',
+  },
 };
 
 const svg = new QRCodeStyling(options);
@@ -123,6 +126,14 @@ document.addEventListener('DOMContentLoaded', () => {
     updateLogoUI();
     generateQR();
   });
+
+  document
+    .querySelector('#qr-background-color')
+    ?.addEventListener('input', (e) => {
+      const value = (e.target as HTMLInputElement).value;
+      options.backgroundOptions!.color = value;
+      generateQR();
+    });
 
   document.querySelector('#qr-file-type')?.addEventListener('input', (e) => {
     const value = (e.target as HTMLSelectElement).value as FileExtension;
