@@ -154,7 +154,7 @@
                   for="qr-background-type"
                   id="qr-background-type-label"
                   class="body-s"
-                  >Type
+                  >Color type
                 </label>
                 <select
                   id="qr-background-type"
@@ -210,8 +210,29 @@
           <div class="accordion-content">
             <div class="accordion-controls">
               <div class="select-group">
+                <label
+                  for="qr-dots-style"
+                  id="qr-dots-style-label"
+                  class="body-s"
+                  >Style
+                </label>
+                <select
+                  id="qr-dots-style"
+                  class="select"
+                  aria-labelledby="qr-dots-style-label"
+                >
+                  <option value="square">Square</option>
+                  <option value="dots">Dots</option>
+                  <option value="rounded">Rounded</option>
+                  <option value="extra-rounded">Extra Rounded</option>
+                  <option value="classy">Classy</option>
+                  <option value="classy-rounded">Classy Rounded</option>
+                </select>
+              </div>
+
+              <div class="select-group">
                 <label for="qr-dots-type" id="qr-dots-type-label" class="body-s"
-                  >Type
+                  >Color type
                 </label>
                 <select
                   id="qr-dots-type"
@@ -268,10 +289,28 @@
             <div class="accordion-controls">
               <div class="select-group">
                 <label
+                  for="qr-cornersSquare-style"
+                  id="qr-cornersSquare-style-label"
+                  class="body-s"
+                  >External shape style
+                </label>
+                <select
+                  id="qr-cornersSquare-style"
+                  class="select"
+                  aria-labelledby="qr-cornersSquare-style-label"
+                >
+                  <option value="square">Square</option>
+                  <option value="dot">Dot</option>
+                  <option value="extra-rounded">Extra Rounded</option>
+                </select>
+              </div>
+
+              <div class="select-group">
+                <label
                   for="qr-cornersSquare-type"
                   id="qr-cornersSquare-type-label"
                   class="body-s"
-                  >Type
+                  >External shape color type
                 </label>
                 <select
                   id="qr-cornersSquare-type"
@@ -286,7 +325,7 @@
 
               <div class="color-picker-group">
                 <label for="qr-cornersSquare-color" class="body-s"
-                  >Square color</label
+                  >External shape color</label
                 >
                 <div class="color-pickers">
                   <input
@@ -306,13 +345,32 @@
               </div>
             </div>
 
+            <hr class="accordion-hr" />
+
             <div class="accordion-controls">
+              <div class="select-group">
+                <label
+                  for="qr-cornersDot-style"
+                  id="qr-cornersDot-style-label"
+                  class="body-s"
+                  >Internal shape style
+                </label>
+                <select
+                  id="qr-cornersDot-style"
+                  class="select"
+                  aria-labelledby="qr-cornersDot-style-label"
+                >
+                  <option value="square">Square</option>
+                  <option value="dot">Dot</option>
+                </select>
+              </div>
+
               <div class="select-group">
                 <label
                   for="qr-cornersDot-type"
                   id="qr-cornersDot-type-label"
                   class="body-s"
-                  >Dot color type
+                  >Internal color type
                 </label>
                 <select
                   id="qr-cornersDot-type"
@@ -327,7 +385,7 @@
 
               <div class="color-picker-group">
                 <label for="qr-cornersDot-color" class="body-s"
-                  >Dot color</label
+                  >Internal shape color</label
                 >
                 <div class="color-pickers">
                   <input

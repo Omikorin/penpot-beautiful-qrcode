@@ -1,4 +1,7 @@
 import QRCodeStyling, {
+  CornerDotType,
+  CornerSquareType,
+  DotType,
   type FileExtension,
   type Options,
 } from 'qr-code-styling';
@@ -40,6 +43,7 @@ const options: Options = {
   type: 'svg',
   data: 'https://links.omikor.in',
   margin: 10,
+
   backgroundOptions: {
     color: '#ffffff',
   },
@@ -48,9 +52,11 @@ const options: Options = {
   },
   cornersSquareOptions: {
     color: '#000000',
+    type: 'square',
   },
   cornersDotOptions: {
     color: '#000000',
+    type: 'square',
   },
 };
 
@@ -237,6 +243,12 @@ document.addEventListener('DOMContentLoaded', () => {
       generateQR();
     });
 
+  document.querySelector('#qr-dots-style')?.addEventListener('input', (e) => {
+    const value = (e.target as HTMLSelectElement).value as DotType;
+    options.dotsOptions!.type = value;
+    generateQR();
+  });
+
   document.querySelector('#qr-dots-type')?.addEventListener('input', (e) => {
     const value = (e.target as HTMLSelectElement).value as ColorType;
     updateColorType('dots', value);
@@ -253,6 +265,14 @@ document.addEventListener('DOMContentLoaded', () => {
     updateGradient('dots');
     generateQR();
   });
+
+  document
+    .querySelector('#qr-cornersSquare-style')
+    ?.addEventListener('input', (e) => {
+      const value = (e.target as HTMLSelectElement).value as CornerSquareType;
+      options.cornersSquareOptions!.type = value;
+      generateQR();
+    });
 
   document
     .querySelector('#qr-cornersSquare-type')
@@ -274,6 +294,14 @@ document.addEventListener('DOMContentLoaded', () => {
     .querySelector('#qr-cornersSquare-color-2')
     ?.addEventListener('input', () => {
       updateGradient('cornersSquare');
+      generateQR();
+    });
+
+  document
+    .querySelector('#qr-cornersDot-style')
+    ?.addEventListener('input', (e) => {
+      const value = (e.target as HTMLSelectElement).value as CornerDotType;
+      options.cornersDotOptions!.type = value;
       generateQR();
     });
 

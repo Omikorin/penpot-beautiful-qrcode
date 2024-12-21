@@ -147,6 +147,11 @@ body {
   gap: var(--spacing-12);
 }
 
+.accordion-hr {
+  border: 1px solid var(--background-secondary);
+  width: 100%;
+}
+
 .select-group {
   display: grid;
   gap: var(--spacing-4);
