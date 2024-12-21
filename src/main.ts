@@ -3,7 +3,12 @@ import QRCodeStyling, {
   type Options,
 } from 'qr-code-styling';
 import './style.css';
-import type { ColorType, PluginConfig } from './types';
+import type {
+  ColorType,
+  PluginConfig,
+  UpdateColorOptionsType,
+  UpdateGradientType,
+} from './types';
 
 // get the current theme from the URL
 const searchParams = new URLSearchParams(window.location.search);
@@ -14,6 +19,18 @@ const config: PluginConfig = {
   logoFilename: '',
   background: {
     colorType: 'single',
+  },
+  dots: {
+    colorType: 'single',
+    style: 'square',
+  },
+  cornersDot: {
+    colorType: 'single',
+    style: 'square',
+  },
+  cornersSquare: {
+    colorType: 'single',
+    style: 'square',
   },
 };
 
@@ -139,65 +156,20 @@ document.addEventListener('DOMContentLoaded', () => {
     generateQR();
   });
 
-  document
-    .querySelector('#qr-background-type')
-    ?.addEventListener('input', (e) => {
-      const value = (e.target as HTMLSelectElement).value as ColorType;
-      const firstColorPicker = document.querySelector(
-        '#qr-background-color',
-      ) as HTMLInputElement;
-      const secondColorPicker = document.querySelector(
-        '#qr-background-color-2',
-      ) as HTMLInputElement;
-
-      config.background.colorType = value;
-
-      if (value === 'single') {
-        secondColorPicker.classList.add('hidden');
-        options.backgroundOptions!.gradient = undefined;
-        options.backgroundOptions!.color = firstColorPicker.value;
-      } else {
-        secondColorPicker.classList.remove('hidden');
-        updateGradient();
-      }
-
-      generateQR();
-    });
-
-  document
-    .querySelector('#qr-background-color')
-    ?.addEventListener('input', (e) => {
-      const { colorType } = config.background;
-      const value = (e.target as HTMLInputElement).value;
-
-      if (colorType === 'single') {
-        options.backgroundOptions!.color = value;
-      } else {
-        updateGradient();
-      }
-
-      generateQR();
-    });
-
-  document
-    .querySelector('#qr-background-color-2')
-    ?.addEventListener('input', () => {
-      updateGradient();
-      generateQR();
-    });
-
-  const updateGradient = () => {
-    const { colorType } = config.background;
+  const updateGradient = (type: UpdateGradientType) => {
+    const { colorType } = config[type];
     if (colorType === 'single') return;
 
     const color1 = (
-      document.querySelector('#qr-background-color') as HTMLInputElement
+      document.querySelector(`#qr-${type}-color`) as HTMLInputElement
     ).value;
     const color2 = (
-      document.querySelector('#qr-background-color-2') as HTMLInputElement
+      document.querySelector(`#qr-${type}-color-2`) as HTMLInputElement
     ).value;
 
-    options.backgroundOptions!.gradient = {
+    const propId = `${type}Options` as UpdateColorOptionsType;
+
+    options[propId]!.gradient = {
       type: colorType,
       colorStops: [
         { offset: 0, color: color1 },
@@ -205,30 +177,126 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
     };
 
-    options.backgroundOptions!.color = undefined;
+    options[propId]!.color = undefined;
+  };
+
+  const updateColorType = (type: UpdateGradientType, colorType: ColorType) => {
+    config[type].colorType = colorType;
+
+    const colorPicker1 = document.querySelector(
+      `#qr-${type}-color`,
+    ) as HTMLInputElement;
+    const colorPicker2 = document.querySelector(
+      `#qr-${type}-color-2`,
+    ) as HTMLInputElement;
+
+    const optionsId = `${type}Options` as UpdateColorOptionsType;
+
+    if (colorType === 'single') {
+      colorPicker2.classList.add('hidden');
+      options[optionsId]!.gradient = undefined;
+      options[optionsId]!.color = colorPicker1.value;
+    } else {
+      colorPicker2.classList.remove('hidden');
+      updateGradient(type);
+    }
   };
 
   document
-    .querySelector('#qr-pattern-color')
+    .querySelector('#qr-background-type')
+    ?.addEventListener('input', (e) => {
+      const value = (e.target as HTMLSelectElement).value as ColorType;
+      updateColorType('background', value);
+      generateQR();
+    });
+
+  const updateFirstColor = (type: UpdateGradientType, color: string) => {
+    const { colorType } = config[type];
+
+    const propId = `${type}Options` as UpdateColorOptionsType;
+
+    if (colorType === 'single') {
+      options[propId]!.color = color;
+    } else {
+      updateGradient(type);
+    }
+  };
+
+  document
+    .querySelector('#qr-background-color')
     ?.addEventListener('input', (e) => {
       const value = (e.target as HTMLInputElement).value;
-      options.dotsOptions!.color = value;
+      updateFirstColor('background', value);
       generateQR();
     });
 
   document
-    .querySelector('#qr-corners-square-color')
+    .querySelector('#qr-background-color-2')
+    ?.addEventListener('input', () => {
+      updateGradient('background');
+      generateQR();
+    });
+
+  document.querySelector('#qr-dots-type')?.addEventListener('input', (e) => {
+    const value = (e.target as HTMLSelectElement).value as ColorType;
+    updateColorType('dots', value);
+    generateQR();
+  });
+
+  document.querySelector('#qr-dots-color')?.addEventListener('input', (e) => {
+    const value = (e.target as HTMLInputElement).value;
+    updateFirstColor('dots', value);
+    generateQR();
+  });
+
+  document.querySelector('#qr-dots-color-2')?.addEventListener('input', () => {
+    updateGradient('dots');
+    generateQR();
+  });
+
+  document
+    .querySelector('#qr-cornersSquare-type')
     ?.addEventListener('input', (e) => {
-      const value = (e.target as HTMLInputElement).value;
-      options.cornersSquareOptions!.color = value;
+      const value = (e.target as HTMLSelectElement).value as ColorType;
+      updateColorType('cornersSquare', value);
       generateQR();
     });
 
   document
-    .querySelector('#qr-corners-dot-color')
+    .querySelector('#qr-cornersSquare-color')
     ?.addEventListener('input', (e) => {
       const value = (e.target as HTMLInputElement).value;
-      options.cornersDotOptions!.color = value;
+      updateFirstColor('cornersSquare', value);
+      generateQR();
+    });
+
+  document
+    .querySelector('#qr-cornersSquare-color-2')
+    ?.addEventListener('input', () => {
+      updateGradient('cornersSquare');
+      generateQR();
+    });
+
+  document
+    .querySelector('#qr-cornersDot-type')
+    ?.addEventListener('input', (e) => {
+      const value = (e.target as HTMLSelectElement).value as ColorType;
+      updateColorType('cornersDot', value);
+      generateQR();
+    });
+
+  document
+    .querySelector('#qr-cornersDot-color')
+    ?.addEventListener('input', (e) => {
+      const value = (e.target as HTMLInputElement).value;
+      updateFirstColor('cornersDot', value);
+      generateQR();
+    });
+
+  document
+    .querySelector('#qr-cornersDot-color-2')
+    ?.addEventListener('input', () => {
+      updateGradient('cornersDot');
       generateQR();
     });
 

@@ -148,7 +148,7 @@
             </svg>
           </summary>
           <div class="accordion-content">
-            <div class="background-controls">
+            <div class="accordion-controls">
               <div class="select-group">
                 <label
                   for="qr-background-type"
@@ -190,7 +190,7 @@
         </details>
       </div>
 
-      <!-- Pattern -->
+      <!-- Pattern / Dots -->
       <div class="content-group">
         <details class="accordion">
           <summary>
@@ -208,14 +208,40 @@
             </svg>
           </summary>
           <div class="accordion-content">
-            <div class="color-picker-group">
-              <label for="qr-pattern-color" class="body-s">Color</label>
-              <input
-                id="qr-pattern-color"
-                type="color"
-                class="color-picker"
-                value="#000000"
-              />
+            <div class="accordion-controls">
+              <div class="select-group">
+                <label for="qr-dots-type" id="qr-dots-type-label" class="body-s"
+                  >Type
+                </label>
+                <select
+                  id="qr-dots-type"
+                  class="select"
+                  aria-labelledby="qr-dots-type-label"
+                >
+                  <option value="single">Single Color</option>
+                  <option value="linear">Linear Gradient</option>
+                  <option value="radial">Radial Gradient</option>
+                </select>
+              </div>
+
+              <div class="color-picker-group">
+                <label for="qr-dots-color" class="body-s">Color</label>
+                <div class="color-pickers">
+                  <input
+                    id="qr-dots-color"
+                    type="color"
+                    class="color-picker"
+                    value="#000000"
+                  />
+                  <input
+                    id="qr-dots-color-2"
+                    type="color"
+                    class="color-picker gradient-color hidden"
+                    aria-label="Gradient second color"
+                    value="#000000"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </details>
@@ -239,25 +265,86 @@
             </svg>
           </summary>
           <div class="accordion-content">
-            <div class="color-picker-group">
-              <label for="qr-corners-square-color" class="body-s"
-                >Square color</label
-              >
-              <input
-                id="qr-corners-square-color"
-                type="color"
-                class="color-picker"
-                value="#000000"
-              />
+            <div class="accordion-controls">
+              <div class="select-group">
+                <label
+                  for="qr-cornersSquare-type"
+                  id="qr-cornersSquare-type-label"
+                  class="body-s"
+                  >Type
+                </label>
+                <select
+                  id="qr-cornersSquare-type"
+                  class="select"
+                  aria-labelledby="qr-cornersSquare-type-label"
+                >
+                  <option value="single">Single Color</option>
+                  <option value="linear">Linear Gradient</option>
+                  <option value="radial">Radial Gradient</option>
+                </select>
+              </div>
+
+              <div class="color-picker-group">
+                <label for="qr-cornersSquare-color" class="body-s"
+                  >Square color</label
+                >
+                <div class="color-pickers">
+                  <input
+                    id="qr-cornersSquare-color"
+                    type="color"
+                    class="color-picker"
+                    value="#000000"
+                  />
+                  <input
+                    id="qr-cornersSquare-color-2"
+                    type="color"
+                    class="color-picker gradient-color hidden"
+                    aria-label="Gradient second color"
+                    value="#000000"
+                  />
+                </div>
+              </div>
             </div>
-            <div class="color-picker-group">
-              <label for="qr-corners-dot-color" class="body-s">Dot color</label>
-              <input
-                id="qr-corners-dot-color"
-                type="color"
-                class="color-picker"
-                value="#000000"
-              />
+
+            <div class="accordion-controls">
+              <div class="select-group">
+                <label
+                  for="qr-cornersDot-type"
+                  id="qr-cornersDot-type-label"
+                  class="body-s"
+                  >Dot color type
+                </label>
+                <select
+                  id="qr-cornersDot-type"
+                  class="select"
+                  aria-labelledby="qr-cornersDot-type-label"
+                >
+                  <option value="single">Single Color</option>
+                  <option value="linear">Linear Gradient</option>
+                  <option value="radial">Radial Gradient</option>
+                </select>
+              </div>
+
+              <div class="color-picker-group">
+                <label for="qr-cornersDot-color" class="body-s"
+                  >Dot color</label
+                >
+                <div class="color-pickers">
+                  <input
+                    id="qr-cornersDot-color"
+                    type="color"
+                    class="color-picker"
+                    value="#000000"
+                  />
+                  <input
+                    id="qr-cornersDot-color-2"
+                    type="color"
+                    class="color-picker gradient-color hidden"
+                    aria-label="Gradient second color"
+                    value="#000000"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </details>

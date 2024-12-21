@@ -1,4 +1,10 @@
-import type { FileExtension, GradientType } from 'qr-code-styling';
+import type {
+  CornerDotType,
+  CornerSquareType,
+  DotType,
+  FileExtension,
+  GradientType,
+} from 'qr-code-styling';
 
 export type ColorType = 'single' | GradientType;
 
@@ -8,8 +14,29 @@ export interface PluginConfig {
   background: {
     colorType: ColorType;
   };
+  dots: {
+    colorType: ColorType;
+    style: DotType;
+  };
+  cornersDot: {
+    colorType: ColorType;
+    style: CornerDotType;
+  };
+  cornersSquare: {
+    colorType: ColorType;
+    style: CornerSquareType;
+  };
 }
 
+export type UpdateGradientType =
+  | 'background'
+  | 'dots'
+  | 'cornersDot'
+  | 'cornersSquare';
+
+export type UpdateColorOptionsType = `${UpdateGradientType}Options`;
+
+// Penpot integration types
 export interface PluginAddSVGEvent {
   type: 'add-qr';
   content: {

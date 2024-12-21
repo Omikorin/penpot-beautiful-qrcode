@@ -142,7 +142,7 @@ body {
   gap: var(--spacing-8);
 }
 
-.background-controls {
+.accordion-controls {
   display: grid;
   gap: var(--spacing-12);
 }
