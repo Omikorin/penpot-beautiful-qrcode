@@ -1,30 +1,21 @@
-import type {
-  CornerDotType,
-  CornerSquareType,
-  DotType,
-  FileExtension,
-  GradientType,
-} from 'qr-code-styling';
+import type { FileExtension, GradientType } from 'qr-code-styling';
 
-export type ColorType = 'single' | GradientType;
+export type FillType = 'single' | GradientType;
 
 export interface PluginConfig {
   fileType: FileExtension;
   logoFilename: string;
   background: {
-    colorType: ColorType;
+    fill: FillType;
   };
   dots: {
-    colorType: ColorType;
-    style: DotType;
+    fill: FillType;
   };
   cornersDot: {
-    colorType: ColorType;
-    style: CornerDotType;
+    fill: FillType;
   };
   cornersSquare: {
-    colorType: ColorType;
-    style: CornerSquareType;
+    fill: FillType;
   };
 }
 

@@ -7,7 +7,7 @@ import QRCodeStyling, {
 } from 'qr-code-styling';
 import './style.css';
 import type {
-  ColorType,
+  FillType,
   PluginConfig,
   UpdateColorOptionsType,
   UpdateGradientType,
@@ -21,19 +21,16 @@ const config: PluginConfig = {
   fileType: 'svg',
   logoFilename: '',
   background: {
-    colorType: 'single',
+    fill: 'single',
   },
   dots: {
-    colorType: 'single',
-    style: 'square',
+    fill: 'single',
   },
   cornersDot: {
-    colorType: 'single',
-    style: 'square',
+    fill: 'single',
   },
   cornersSquare: {
-    colorType: 'single',
-    style: 'square',
+    fill: 'single',
   },
 };
 
@@ -163,8 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const updateGradient = (type: UpdateGradientType) => {
-    const { colorType } = config[type];
-    if (colorType === 'single') return;
+    const { fill } = config[type];
+    if (fill === 'single') return;
 
     const color1 = (
       document.querySelector(`#qr-${type}-color`) as HTMLInputElement
@@ -173,21 +170,21 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector(`#qr-${type}-color-2`) as HTMLInputElement
     ).value;
 
-    const propId = `${type}Options` as UpdateColorOptionsType;
+    const optionId = `${type}Options` as UpdateColorOptionsType;
 
-    options[propId]!.gradient = {
-      type: colorType,
+    options[optionId]!.gradient = {
+      type: fill,
       colorStops: [
         { offset: 0, color: color1 },
         { offset: 1, color: color2 },
       ],
     };
 
-    options[propId]!.color = undefined;
+    options[optionId]!.color = undefined;
   };
 
-  const updateColorType = (type: UpdateGradientType, colorType: ColorType) => {
-    config[type].colorType = colorType;
+  const updateFillType = (type: UpdateGradientType, fill: FillType) => {
+    config[type].fill = fill;
 
     const colorPicker1 = document.querySelector(
       `#qr-${type}-color`,
@@ -196,12 +193,12 @@ document.addEventListener('DOMContentLoaded', () => {
       `#qr-${type}-color-2`,
     ) as HTMLInputElement;
 
-    const optionsId = `${type}Options` as UpdateColorOptionsType;
+    const optionId = `${type}Options` as UpdateColorOptionsType;
 
-    if (colorType === 'single') {
+    if (fill === 'single') {
       colorPicker2.classList.add('hidden');
-      options[optionsId]!.gradient = undefined;
-      options[optionsId]!.color = colorPicker1.value;
+      options[optionId]!.gradient = undefined;
+      options[optionId]!.color = colorPicker1.value;
     } else {
       colorPicker2.classList.remove('hidden');
       updateGradient(type);
@@ -209,19 +206,19 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   document
-    .querySelector('#qr-background-type')
+    .querySelector('#qr-background-fill')
     ?.addEventListener('input', (e) => {
-      const value = (e.target as HTMLSelectElement).value as ColorType;
-      updateColorType('background', value);
+      const value = (e.target as HTMLSelectElement).value as FillType;
+      updateFillType('background', value);
       generateQR();
     });
 
   const updateFirstColor = (type: UpdateGradientType, color: string) => {
-    const { colorType } = config[type];
+    const { fill } = config[type];
 
     const propId = `${type}Options` as UpdateColorOptionsType;
 
-    if (colorType === 'single') {
+    if (fill === 'single') {
       options[propId]!.color = color;
     } else {
       updateGradient(type);
@@ -249,9 +246,9 @@ document.addEventListener('DOMContentLoaded', () => {
     generateQR();
   });
 
-  document.querySelector('#qr-dots-type')?.addEventListener('input', (e) => {
-    const value = (e.target as HTMLSelectElement).value as ColorType;
-    updateColorType('dots', value);
+  document.querySelector('#qr-dots-fill')?.addEventListener('input', (e) => {
+    const value = (e.target as HTMLSelectElement).value as FillType;
+    updateFillType('dots', value);
     generateQR();
   });
 
@@ -275,10 +272,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   document
-    .querySelector('#qr-cornersSquare-type')
+    .querySelector('#qr-cornersSquare-fill')
     ?.addEventListener('input', (e) => {
-      const value = (e.target as HTMLSelectElement).value as ColorType;
-      updateColorType('cornersSquare', value);
+      const value = (e.target as HTMLSelectElement).value as FillType;
+      updateFillType('cornersSquare', value);
       generateQR();
     });
 
@@ -306,10 +303,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   document
-    .querySelector('#qr-cornersDot-type')
+    .querySelector('#qr-cornersDot-fill')
     ?.addEventListener('input', (e) => {
-      const value = (e.target as HTMLSelectElement).value as ColorType;
-      updateColorType('cornersDot', value);
+      const value = (e.target as HTMLSelectElement).value as FillType;
+      updateFillType('cornersDot', value);
       generateQR();
     });
 
