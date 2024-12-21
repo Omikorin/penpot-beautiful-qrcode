@@ -1,8 +1,13 @@
-import type { FileExtension } from 'qr-code-styling';
+import type { FileExtension, GradientType } from 'qr-code-styling';
+
+export type ColorType = 'single' | GradientType;
 
 export interface PluginConfig {
   fileType: FileExtension;
   logoFilename: string;
+  background: {
+    colorType: ColorType;
+  };
 }
 
 export interface PluginAddSVGEvent {

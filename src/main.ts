@@ -3,7 +3,7 @@ import QRCodeStyling, {
   type Options,
 } from 'qr-code-styling';
 import './style.css';
-import type { PluginConfig } from './types';
+import type { ColorType, PluginConfig } from './types';
 
 // get the current theme from the URL
 const searchParams = new URLSearchParams(window.location.search);
@@ -12,6 +12,9 @@ document.body.dataset.theme = searchParams.get('theme') ?? 'light';
 const config: PluginConfig = {
   fileType: 'svg',
   logoFilename: '',
+  background: {
+    colorType: 'single',
+  },
 };
 
 const options: Options = {
@@ -137,12 +140,73 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document
-    .querySelector('#qr-background-color')
+    .querySelector('#qr-background-type')
     ?.addEventListener('input', (e) => {
-      const value = (e.target as HTMLInputElement).value;
-      options.backgroundOptions!.color = value;
+      const value = (e.target as HTMLSelectElement).value as ColorType;
+      const firstColorPicker = document.querySelector(
+        '#qr-background-color',
+      ) as HTMLInputElement;
+      const secondColorPicker = document.querySelector(
+        '#qr-background-color-2',
+      ) as HTMLInputElement;
+
+      config.background.colorType = value;
+
+      if (value === 'single') {
+        secondColorPicker.classList.add('hidden');
+        options.backgroundOptions!.gradient = undefined;
+        options.backgroundOptions!.color = firstColorPicker.value;
+      } else {
+        secondColorPicker.classList.remove('hidden');
+        updateGradient();
+      }
+
       generateQR();
     });
+
+  document
+    .querySelector('#qr-background-color')
+    ?.addEventListener('input', (e) => {
+      const { colorType } = config.background;
+      const value = (e.target as HTMLInputElement).value;
+
+      if (colorType === 'single') {
+        options.backgroundOptions!.color = value;
+      } else {
+        updateGradient();
+      }
+
+      generateQR();
+    });
+
+  document
+    .querySelector('#qr-background-color-2')
+    ?.addEventListener('input', () => {
+      updateGradient();
+      generateQR();
+    });
+
+  const updateGradient = () => {
+    const { colorType } = config.background;
+    if (colorType === 'single') return;
+
+    const color1 = (
+      document.querySelector('#qr-background-color') as HTMLInputElement
+    ).value;
+    const color2 = (
+      document.querySelector('#qr-background-color-2') as HTMLInputElement
+    ).value;
+
+    options.backgroundOptions!.gradient = {
+      type: colorType,
+      colorStops: [
+        { offset: 0, color: color1 },
+        { offset: 1, color: color2 },
+      ],
+    };
+
+    options.backgroundOptions!.color = undefined;
+  };
 
   document
     .querySelector('#qr-pattern-color')

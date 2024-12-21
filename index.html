@@ -148,14 +148,43 @@
             </svg>
           </summary>
           <div class="accordion-content">
-            <div class="color-picker-group">
-              <label for="qr-background-color" class="body-s">Color</label>
-              <input
-                id="qr-background-color"
-                type="color"
-                class="color-picker"
-                value="#ffffff"
-              />
+            <div class="background-controls">
+              <div class="select-group">
+                <label
+                  for="qr-background-type"
+                  id="qr-background-type-label"
+                  class="body-s"
+                  >Type
+                </label>
+                <select
+                  id="qr-background-type"
+                  class="select"
+                  aria-labelledby="qr-background-type-label"
+                >
+                  <option value="single">Single Color</option>
+                  <option value="linear">Linear Gradient</option>
+                  <option value="radial">Radial Gradient</option>
+                </select>
+              </div>
+
+              <div class="color-picker-group">
+                <label for="qr-background-color" class="body-s">Color</label>
+                <div class="color-pickers">
+                  <input
+                    id="qr-background-color"
+                    type="color"
+                    class="color-picker"
+                    value="#ffffff"
+                  />
+                  <input
+                    id="qr-background-color-2"
+                    type="color"
+                    class="color-picker gradient-color hidden"
+                    aria-label="Gradient second color"
+                    value="#ffffff"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </details>
@@ -211,7 +240,9 @@
           </summary>
           <div class="accordion-content">
             <div class="color-picker-group">
-              <label for="qr-corners-square-color" class="body-s">Square color</label>
+              <label for="qr-corners-square-color" class="body-s"
+                >Square color</label
+              >
               <input
                 id="qr-corners-square-color"
                 type="color"
