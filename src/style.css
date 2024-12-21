@@ -143,7 +143,7 @@ body {
 .color-picker-group {
   display: flex;
   align-items: center;
-  gap: var(--spacing-8);
+  justify-content: space-between;
 }
 
 .color-picker {
@@ -162,4 +162,8 @@ body {
 .color-picker::-webkit-color-swatch {
   border: 1px solid var(--foreground-primary);
   border-radius: var(--spacing-4);
+}
+
+.color-picker::-webkit-color-swatch:hover {
+  border: 0.125rem solid var(--accent-primary);
 }
