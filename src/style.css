@@ -32,7 +32,7 @@ body {
 }
 
 .content-group {
-  margin-block-end: var(--spacing-12);
+  margin-block-start: var(--spacing-12);
 
   label {
     margin-inline: 0.125rem;
@@ -59,6 +59,10 @@ body {
     margin-left: 20px;
     width: 55px;
   }
+}
+
+.logo-container-group {
+  margin-block-start: var(--spacing-8);
 }
 
 .logo-group:not(.hidden) {
