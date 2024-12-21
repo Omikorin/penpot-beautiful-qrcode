@@ -91,6 +91,7 @@
           </span>
           <span>Choose file</span>
         </button>
+
         <!-- Logo uploaded state -->
         <div id="logo-group" class="logo-group hidden">
           <div class="logo-display">
@@ -127,6 +128,33 @@
               ></path>
             </svg>
           </button>
+        </div>
+
+        <!-- Logo margin control (initially hidden) -->
+        <div id="logo-margin-control" class="margin-control hidden">
+          <label for="logo-margin" id="logo-margin-label" class="body-s">
+            Logo margin
+          </label>
+          <div class="margin-group">
+            <input
+              id="logo-margin"
+              type="range"
+              min="0"
+              max="20"
+              step="1"
+              aria-labelledby="logo-margin-label"
+              value="0"
+            />
+            <input
+              id="logo-margin-value"
+              type="number"
+              min="0"
+              max="20"
+              class="input"
+              aria-labelledby="logo-margin-label"
+              value="0"
+            />
+          </div>
         </div>
       </div>
 

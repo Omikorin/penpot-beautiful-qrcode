@@ -40,7 +40,9 @@ const options: Options = {
   type: 'canvas',
   data: 'https://links.omikor.in',
   margin: 10,
-
+  imageOptions: {
+    margin: 0,
+  },
   backgroundOptions: {
     color: '#ffffff',
   },
@@ -103,30 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
     generateQR();
   });
 
-  document
-    .querySelector('#choose-file-input')
-    ?.addEventListener('input', (e) => {
-      const files = (e.target as HTMLInputElement).files;
-
-      if (!files || files.length === 0) return;
-
-      const file = files[0];
-      const reader = new FileReader();
-
-      reader.addEventListener(
-        'load',
-        () => {
-          options.image = reader.result as string;
-          config.logoFilename = file.name;
-          updateLogoUI();
-          generateQR();
-        },
-        false,
-      );
-
-      reader.readAsDataURL(file);
-    });
-
   const updateLogoUI = () => {
     const chooseFileBtn = document.querySelector('#choose-file-btn');
     const logoGroup = document.querySelector('#logo-group');
@@ -146,15 +124,72 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  document
+    .querySelector('#choose-file-input')
+    ?.addEventListener('input', (e) => {
+      const files = (e.target as HTMLInputElement).files;
+
+      if (!files || files.length === 0) return;
+
+      const file = files[0];
+      const reader = new FileReader();
+
+      reader.addEventListener(
+        'load',
+        () => {
+          options.image = reader.result as string;
+          config.logoFilename = file.name;
+          updateLogoUI();
+          generateQR();
+
+          document
+            .querySelector('#logo-margin-control')
+            ?.classList.remove('hidden');
+        },
+        false,
+      );
+
+      reader.readAsDataURL(file);
+    });
+
   document.querySelector('#choose-file-btn')?.addEventListener('click', () => {
     (document.querySelector('#choose-file-input') as HTMLInputElement)?.click();
   });
+
+  document.querySelector('#logo-margin')?.addEventListener('input', (e) => {
+    const value = (e.target as HTMLInputElement).value;
+
+    if (!value) return;
+
+    const marginInput = document.querySelector(
+      '#logo-margin-value',
+    ) as HTMLInputElement;
+    marginInput.value = value;
+    options.imageOptions!.margin = parseInt(value);
+    generateQR();
+  });
+
+  document
+    .querySelector('#logo-margin-value')
+    ?.addEventListener('input', (e) => {
+      const value = (e.target as HTMLInputElement).value;
+
+      if (!value) return;
+
+      const marginSlider = document.querySelector(
+        '#logo-margin',
+      ) as HTMLInputElement;
+      marginSlider.value = value;
+      options.imageOptions!.margin = parseInt(value);
+      generateQR();
+    });
 
   document.querySelector('#remove-logo')?.addEventListener('click', () => {
     options.image = '';
     config.logoFilename = '';
     (document.querySelector('#choose-file-input') as HTMLInputElement).value =
       '';
+    document.querySelector('#logo-margin-control')?.classList.add('hidden');
     updateLogoUI();
     generateQR();
   });
