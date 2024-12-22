@@ -1,4 +1,4 @@
-import type { PluginEvent } from './types';
+import type { PluginEvent } from './common/types';
 
 penpot.ui.open('Beautiful QR Code', `?theme=${penpot.theme}`, {
   width: 285,
