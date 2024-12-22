@@ -140,7 +140,7 @@ export class QRCodeManager {
   private handleContentChange(e: InputEvent): void {
     const value = (e.target as HTMLInputElement).value;
 
-    if (value.length === 0) return;
+    if (value.length === 0 || value.length > 1000) return;
 
     this.options.data = value;
     this.generateQR();
