@@ -7,6 +7,9 @@
     "dev": "vite-live-preview",
     "build": "tsc && vite build"
   },
+  "engines": {
+    "node": "^20"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Omikorin/penpot-beautiful-qrcode.git"
