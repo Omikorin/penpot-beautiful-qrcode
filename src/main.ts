@@ -1,16 +1,21 @@
-import { ELEMENT_IDS } from './common/constants';
 import { QRCodeManager } from './qr-code-manager';
 import './style.css';
 
-document.addEventListener('DOMContentLoaded', () => {
+const initializeApp = () => {
   const qrManager = new QRCodeManager();
-  const container = document.querySelector(ELEMENT_IDS.preview) as HTMLElement;
+  const container = document.querySelector('#qr-preview') as HTMLElement;
 
   if (container) {
     qrManager.append(container);
     qrManager.initializeEventListeners();
+
+    window.addEventListener('unload', () => {
+      qrManager.destroy();
+    });
   }
-});
+};
+
+document.addEventListener('DOMContentLoaded', () => initializeApp());
 
 // theme handling
 const searchParams = new URLSearchParams(window.location.search);

@@ -1,14 +1,14 @@
-export const ELEMENT_IDS = {
-  preview: '#qr-preview',
-  content: '#qr-content',
-  margin: '#qr-margin',
-  marginValue: '#qr-margin-value',
-  fileInput: '#choose-file-input',
-  fileButton: '#choose-file-btn',
-  logoGroup: '#logo-group',
-  logoFilename: '#logo-filename',
-  logoMarginControl: '#logo-margin-control',
-  logoMargin: '#logo-margin',
-  logoMarginValue: '#logo-margin-value',
-  removeLogoButton: '#remove-logo',
-} as const;
+export const elementIds = [
+  '#qr-preview',
+  '#qr-content',
+  '#qr-margin',
+  '#qr-margin-value',
+  '#choose-file-input',
+  '#choose-file-btn',
+  '#logo-group',
+  '#logo-filename',
+  '#logo-margin-control',
+  '#logo-margin',
+  '#logo-margin-value',
+  '#remove-logo',
+] as const;
