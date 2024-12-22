@@ -30,7 +30,7 @@ Transform ordinary QR codes into vibrant design elements directly within Penpot!
 2. Click the "Install" button for Beautiful QR Code
 3. Alternative installation: Use this manifest link in Penpot's plugin installer:
    ```
-   [Manifest link coming soon]
+   https://penpot-beautiful-qrcode.pages.dev/manifest.json
    ```
 
 ## 💻 Development
