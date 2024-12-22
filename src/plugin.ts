@@ -2,7 +2,7 @@ import type { PluginEvent } from './types';
 
 penpot.ui.open('Beautiful QR Code', `?theme=${penpot.theme}`, {
   width: 285,
-  height: 770,
+  height: 750,
 });
 
 penpot.ui.onMessage<PluginEvent>(async (message) => {
