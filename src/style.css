@@ -199,3 +199,37 @@ body {
 .color-picker::-webkit-color-swatch:hover {
   border: 0.125rem solid var(--accent-primary);
 }
+
+.content-footer {
+  text-align: center;
+  padding-top: var(--spacing-4);
+  margin-top: var(--spacing-12);
+  border-top: 1px solid var(--foreground-secondary);
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  color: var(--foreground-primary);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.footer-link:hover {
+  color: var(--accent-primary);
+}
+
+.heart-icon {
+  display: inline-flex;
+  color: #ff4f4f;
+}
+
+.heart-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.footer-accent {
+  font-weight: 500;
+}
