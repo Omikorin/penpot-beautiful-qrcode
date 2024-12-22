@@ -8,472 +8,477 @@
   <body>
     <main>
       <!-- QR preview -->
-      <div>
+      <div class="preview-section">
         <div id="qr-preview"></div>
       </div>
 
-      <!-- QR code content -->
-      <div class="content-group form-group">
-        <label for="qr-content" id="qr-content-label" class="body-s">
-          QR code content
-        </label>
-        <input
-          id="qr-content"
-          type="text"
-          class="input input-full"
-          placeholder="Enter text or URL"
-          aria-labelledby="qr-content-label"
-          value="https://links.omikor.in"
-        />
-      </div>
-
-      <!-- Margin / QR safe zone -->
-      <div class="content-group">
-        <label for="qr-margin" id="qr-margin-label" class="body-s">
-          Margin
-        </label>
-        <div class="margin-group">
+      <section class="controls-section">
+        <!-- QR code content -->
+        <div class="text-content-group form-group">
+          <label for="qr-content" id="qr-content-label" class="body-s">
+            QR code content
+          </label>
           <input
-            id="qr-margin"
-            type="range"
-            min="0"
-            max="100"
-            step="10"
-            aria-labelledby="qr-margin-label"
-            value="10"
-          />
-          <input
-            id="qr-margin-value"
-            type="number"
-            min="0"
-            max="100"
-            class="input"
-            aria-labelledby="qr-margin-label"
-            value="10"
+            id="qr-content"
+            type="text"
+            class="input input-full"
+            placeholder="Enter text or URL"
+            aria-labelledby="qr-content-label"
+            value="https://links.omikor.in"
           />
         </div>
-      </div>
 
-      <!-- Logo -->
-      <div class="content-group form-group logo-container-group">
-        <label for="choose-file-btn" id="choose-file-label" class="body-s">
-          Logo
-        </label>
-        <input
-          id="choose-file-input"
-          type="file"
-          accept="image/*"
-          class="input-label-hidden"
-          tabindex="-1"
-          aria-hidden="true"
-        />
-        <!-- No logo uploaded state -->
-        <button
-          id="choose-file-btn"
-          type="button"
-          class="input-full button-with-icon"
-          aria-label="Upload logo"
-          data-appearance="secondary"
-        >
-          <span class="button-icon">
-            <!-- Upload Simple icon from Phosphor Icons under MIT License, thank you -->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="currentColor"
-              viewBox="0 0 256 256"
-            >
-              <path
-                d="M224,144v64a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V144a8,8,0,0,1,16,0v56H208V144a8,8,0,0,1,16,0ZM93.66,77.66,120,51.31V144a8,8,0,0,0,16,0V51.31l26.34,26.35a8,8,0,0,0,11.32-11.32l-40-40a8,8,0,0,0-11.32,0l-40,40A8,8,0,0,0,93.66,77.66Z"
-              ></path>
-            </svg>
-          </span>
-          <span>Choose file</span>
-        </button>
-
-        <!-- Logo uploaded state -->
-        <div id="logo-group" class="logo-group hidden">
-          <div class="logo-display">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="currentColor"
-              viewBox="0 0 256 256"
-            >
-              <path
-                d="M224,144v64a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V144a8,8,0,0,1,16,0v56H208V144a8,8,0,0,1,16,0ZM93.66,77.66,120,51.31V144a8,8,0,0,0,16,0V51.31l26.34,26.35a8,8,0,0,0,11.32-11.32l-40-40a8,8,0,0,0-11.32,0l-40,40A8,8,0,0,0,93.66,77.66Z"
-              ></path>
-            </svg>
-            <span id="logo-filename" class="body-s">filename.png</span>
-          </div>
-          <button
-            id="remove-logo"
-            type="button"
-            class="button-icon-only"
-            aria-label="Remove logo"
-            data-appearance="secondary"
-          >
-            <!-- Trash icon from Phosphor Icons under MIT License, thank you -->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="currentColor"
-              viewBox="0 0 256 256"
-            >
-              <path
-                d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"
-              ></path>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Logo margin control (initially hidden) -->
-        <div id="logo-margin-control" class="margin-control hidden">
-          <label for="logo-margin" id="logo-margin-label" class="body-s">
-            Logo margin
+        <!-- Margin / QR safe zone -->
+        <div class="content-group">
+          <label for="qr-margin" id="qr-margin-label" class="body-s">
+            Margin
           </label>
           <div class="margin-group">
             <input
-              id="logo-margin"
+              id="qr-margin"
               type="range"
               min="0"
-              max="20"
-              step="1"
-              aria-labelledby="logo-margin-label"
-              value="0"
+              max="100"
+              step="10"
+              aria-labelledby="qr-margin-label"
+              value="10"
             />
             <input
-              id="logo-margin-value"
+              id="qr-margin-value"
               type="number"
               min="0"
-              max="20"
+              max="100"
               class="input"
-              aria-labelledby="logo-margin-label"
-              value="0"
+              aria-labelledby="qr-margin-label"
+              value="10"
             />
           </div>
         </div>
-      </div>
 
-      <!-- Background -->
-      <div class="content-group">
-        <details class="accordion">
-          <summary>
-            <span class="body-s">Background</span>
-            <svg
-              class="accordion-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="rgb(143, 157, 163)"
+        <!-- Logo -->
+        <div class="content-group form-group logo-container-group">
+          <label for="choose-file-btn" id="choose-file-label" class="body-s">
+            Logo
+          </label>
+          <input
+            id="choose-file-input"
+            type="file"
+            accept="image/*"
+            class="input-label-hidden"
+            tabindex="-1"
+            aria-hidden="true"
+          />
+          <!-- No logo uploaded state -->
+          <button
+            id="choose-file-btn"
+            type="button"
+            class="input-full button-with-icon"
+            aria-label="Upload logo"
+            data-appearance="secondary"
+          >
+            <span class="button-icon">
+              <!-- Upload Simple icon from Phosphor Icons under MIT License, thank you -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                viewBox="0 0 256 256"
+              >
+                <path
+                  d="M224,144v64a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V144a8,8,0,0,1,16,0v56H208V144a8,8,0,0,1,16,0ZM93.66,77.66,120,51.31V144a8,8,0,0,0,16,0V51.31l26.34,26.35a8,8,0,0,0,11.32-11.32l-40-40a8,8,0,0,0-11.32,0l-40,40A8,8,0,0,0,93.66,77.66Z"
+                ></path>
+              </svg>
+            </span>
+            <span>Choose file</span>
+          </button>
+
+          <!-- Logo uploaded state -->
+          <div id="logo-group" class="logo-group hidden">
+            <div class="logo-display">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                viewBox="0 0 256 256"
+              >
+                <path
+                  d="M224,144v64a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V144a8,8,0,0,1,16,0v56H208V144a8,8,0,0,1,16,0ZM93.66,77.66,120,51.31V144a8,8,0,0,0,16,0V51.31l26.34,26.35a8,8,0,0,0,11.32-11.32l-40-40a8,8,0,0,0-11.32,0l-40,40A8,8,0,0,0,93.66,77.66Z"
+                ></path>
+              </svg>
+              <span id="logo-filename" class="body-s">filename.png</span>
+            </div>
+            <button
+              id="remove-logo"
+              type="button"
+              class="button-icon-only"
+              aria-label="Remove logo"
+              data-appearance="secondary"
             >
-              <path d="m4 6 4 4 4-4" />
-            </svg>
-          </summary>
-          <div class="accordion-content">
-            <div class="accordion-controls">
-              <div class="select-group">
-                <label
-                  for="qr-background-fill"
-                  id="qr-background-fill-label"
-                  class="body-s"
-                  >Fill
-                </label>
-                <select
-                  id="qr-background-fill"
-                  class="select"
-                  aria-labelledby="qr-background-fill-label"
-                >
-                  <option value="single">Single Color</option>
-                  <option value="linear">Linear Gradient</option>
-                  <option value="radial">Radial Gradient</option>
-                </select>
-              </div>
+              <!-- Trash icon from Phosphor Icons under MIT License, thank you -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                viewBox="0 0 256 256"
+              >
+                <path
+                  d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"
+                ></path>
+              </svg>
+            </button>
+          </div>
 
-              <div class="color-picker-group">
-                <label for="qr-background-color" class="body-s">Color</label>
-                <div class="color-pickers">
-                  <input
-                    id="qr-background-color"
-                    type="color"
-                    class="color-picker"
-                    value="#ffffff"
-                  />
-                  <input
-                    id="qr-background-color-2"
-                    type="color"
-                    class="color-picker gradient-color hidden"
-                    aria-label="Gradient second color"
-                    value="#ffffff"
-                  />
-                </div>
-              </div>
+          <!-- Logo margin control (initially hidden) -->
+          <div id="logo-margin-control" class="margin-control hidden">
+            <label for="logo-margin" id="logo-margin-label" class="body-s">
+              Logo margin
+            </label>
+            <div class="margin-group">
+              <input
+                id="logo-margin"
+                type="range"
+                min="0"
+                max="20"
+                step="1"
+                aria-labelledby="logo-margin-label"
+                value="0"
+              />
+              <input
+                id="logo-margin-value"
+                type="number"
+                min="0"
+                max="20"
+                class="input"
+                aria-labelledby="logo-margin-label"
+                value="0"
+              />
             </div>
           </div>
-        </details>
-      </div>
+        </div>
 
-      <!-- Pattern / Dots -->
-      <div class="content-group">
-        <details class="accordion">
-          <summary>
-            <span class="body-s">Pattern</span>
-            <svg
-              class="accordion-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="rgb(143, 157, 163)"
-            >
-              <path d="m4 6 4 4 4-4" />
-            </svg>
-          </summary>
-          <div class="accordion-content">
-            <div class="accordion-controls">
-              <div class="select-group">
-                <label
-                  for="qr-dots-style"
-                  id="qr-dots-style-label"
-                  class="body-s"
-                  >Style
-                </label>
-                <select
-                  id="qr-dots-style"
-                  class="select"
-                  aria-labelledby="qr-dots-style-label"
-                >
-                  <option value="square">Square</option>
-                  <option value="dots">Dots</option>
-                  <option value="rounded">Rounded</option>
-                  <option value="extra-rounded">Extra Rounded</option>
-                  <option value="classy">Classy</option>
-                  <option value="classy-rounded">Classy Rounded</option>
-                </select>
-              </div>
+        <!-- Background -->
+        <div class="content-group">
+          <details class="accordion">
+            <summary>
+              <span class="body-s">Background</span>
+              <svg
+                class="accordion-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="rgb(143, 157, 163)"
+              >
+                <path d="m4 6 4 4 4-4" />
+              </svg>
+            </summary>
+            <div class="accordion-content">
+              <div class="accordion-controls">
+                <div class="select-group">
+                  <label
+                    for="qr-background-fill"
+                    id="qr-background-fill-label"
+                    class="body-s"
+                    >Fill
+                  </label>
+                  <select
+                    id="qr-background-fill"
+                    class="select"
+                    aria-labelledby="qr-background-fill-label"
+                  >
+                    <option value="single">Single Color</option>
+                    <option value="linear">Linear Gradient</option>
+                    <option value="radial">Radial Gradient</option>
+                  </select>
+                </div>
 
-              <div class="select-group">
-                <label for="qr-dots-fill" id="qr-dots-fill-label" class="body-s"
-                  >Fill
-                </label>
-                <select
-                  id="qr-dots-fill"
-                  class="select"
-                  aria-labelledby="qr-dots-fill-label"
-                >
-                  <option value="single">Single Color</option>
-                  <option value="linear">Linear Gradient</option>
-                  <option value="radial">Radial Gradient</option>
-                </select>
-              </div>
-
-              <div class="color-picker-group">
-                <label for="qr-dots-color" class="body-s">Color</label>
-                <div class="color-pickers">
-                  <input
-                    id="qr-dots-color"
-                    type="color"
-                    class="color-picker"
-                    value="#000000"
-                  />
-                  <input
-                    id="qr-dots-color-2"
-                    type="color"
-                    class="color-picker gradient-color hidden"
-                    aria-label="Gradient second color"
-                    value="#000000"
-                  />
+                <div class="color-picker-group">
+                  <label for="qr-background-color" class="body-s">Color</label>
+                  <div class="color-pickers">
+                    <input
+                      id="qr-background-color"
+                      type="color"
+                      class="color-picker"
+                      value="#ffffff"
+                    />
+                    <input
+                      id="qr-background-color-2"
+                      type="color"
+                      class="color-picker gradient-color hidden"
+                      aria-label="Gradient second color"
+                      value="#ffffff"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </details>
-      </div>
+          </details>
+        </div>
 
-      <!-- Corners -->
-      <div class="content-group">
-        <details class="accordion">
-          <summary>
-            <span class="body-s">Corners</span>
-            <svg
-              class="accordion-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="rgb(143, 157, 163)"
-            >
-              <path d="m4 6 4 4 4-4" />
-            </svg>
-          </summary>
-          <div class="accordion-content">
-            <div class="accordion-controls">
-              <div class="select-group">
-                <label
-                  for="qr-cornersSquare-style"
-                  id="qr-cornersSquare-style-label"
-                  class="body-s"
-                  >External shape style
-                </label>
-                <select
-                  id="qr-cornersSquare-style"
-                  class="select"
-                  aria-labelledby="qr-cornersSquare-style-label"
-                >
-                  <option value="square">Square</option>
-                  <option value="dot">Dot</option>
-                  <option value="extra-rounded">Extra Rounded</option>
-                </select>
-              </div>
+        <!-- Pattern / Dots -->
+        <div class="content-group">
+          <details class="accordion">
+            <summary>
+              <span class="body-s">Pattern</span>
+              <svg
+                class="accordion-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="rgb(143, 157, 163)"
+              >
+                <path d="m4 6 4 4 4-4" />
+              </svg>
+            </summary>
+            <div class="accordion-content">
+              <div class="accordion-controls">
+                <div class="select-group">
+                  <label
+                    for="qr-dots-style"
+                    id="qr-dots-style-label"
+                    class="body-s"
+                    >Style
+                  </label>
+                  <select
+                    id="qr-dots-style"
+                    class="select"
+                    aria-labelledby="qr-dots-style-label"
+                  >
+                    <option value="square">Square</option>
+                    <option value="dots">Dots</option>
+                    <option value="rounded">Rounded</option>
+                    <option value="extra-rounded">Extra Rounded</option>
+                    <option value="classy">Classy</option>
+                    <option value="classy-rounded">Classy Rounded</option>
+                  </select>
+                </div>
 
-              <div class="select-group">
-                <label
-                  for="qr-cornersSquare-fill"
-                  id="qr-cornersSquare-fill-label"
-                  class="body-s"
-                  >External shape fill
-                </label>
-                <select
-                  id="qr-cornersSquare-fill"
-                  class="select"
-                  aria-labelledby="qr-cornersSquare-fill-label"
-                >
-                  <option value="single">Single Color</option>
-                  <option value="linear">Linear Gradient</option>
-                  <option value="radial">Radial Gradient</option>
-                </select>
-              </div>
+                <div class="select-group">
+                  <label
+                    for="qr-dots-fill"
+                    id="qr-dots-fill-label"
+                    class="body-s"
+                    >Fill
+                  </label>
+                  <select
+                    id="qr-dots-fill"
+                    class="select"
+                    aria-labelledby="qr-dots-fill-label"
+                  >
+                    <option value="single">Single Color</option>
+                    <option value="linear">Linear Gradient</option>
+                    <option value="radial">Radial Gradient</option>
+                  </select>
+                </div>
 
-              <div class="color-picker-group">
-                <label for="qr-cornersSquare-color" class="body-s"
-                  >External shape color</label
-                >
-                <div class="color-pickers">
-                  <input
-                    id="qr-cornersSquare-color"
-                    type="color"
-                    class="color-picker"
-                    value="#000000"
-                  />
-                  <input
-                    id="qr-cornersSquare-color-2"
-                    type="color"
-                    class="color-picker gradient-color hidden"
-                    aria-label="Gradient second color"
-                    value="#000000"
-                  />
+                <div class="color-picker-group">
+                  <label for="qr-dots-color" class="body-s">Color</label>
+                  <div class="color-pickers">
+                    <input
+                      id="qr-dots-color"
+                      type="color"
+                      class="color-picker"
+                      value="#000000"
+                    />
+                    <input
+                      id="qr-dots-color-2"
+                      type="color"
+                      class="color-picker gradient-color hidden"
+                      aria-label="Gradient second color"
+                      value="#000000"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
+          </details>
+        </div>
 
-            <hr class="accordion-hr" />
+        <!-- Corners -->
+        <div class="content-group">
+          <details class="accordion">
+            <summary>
+              <span class="body-s">Corners</span>
+              <svg
+                class="accordion-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="rgb(143, 157, 163)"
+              >
+                <path d="m4 6 4 4 4-4" />
+              </svg>
+            </summary>
+            <div class="accordion-content">
+              <div class="accordion-controls">
+                <div class="select-group">
+                  <label
+                    for="qr-cornersSquare-style"
+                    id="qr-cornersSquare-style-label"
+                    class="body-s"
+                    >External shape style
+                  </label>
+                  <select
+                    id="qr-cornersSquare-style"
+                    class="select"
+                    aria-labelledby="qr-cornersSquare-style-label"
+                  >
+                    <option value="square">Square</option>
+                    <option value="dot">Dot</option>
+                    <option value="extra-rounded">Extra Rounded</option>
+                  </select>
+                </div>
 
-            <div class="accordion-controls">
-              <div class="select-group">
-                <label
-                  for="qr-cornersDot-style"
-                  id="qr-cornersDot-style-label"
-                  class="body-s"
-                  >Internal shape style
-                </label>
-                <select
-                  id="qr-cornersDot-style"
-                  class="select"
-                  aria-labelledby="qr-cornersDot-style-label"
-                >
-                  <option value="square">Square</option>
-                  <option value="dot">Dot</option>
-                </select>
+                <div class="select-group">
+                  <label
+                    for="qr-cornersSquare-fill"
+                    id="qr-cornersSquare-fill-label"
+                    class="body-s"
+                    >External shape fill
+                  </label>
+                  <select
+                    id="qr-cornersSquare-fill"
+                    class="select"
+                    aria-labelledby="qr-cornersSquare-fill-label"
+                  >
+                    <option value="single">Single Color</option>
+                    <option value="linear">Linear Gradient</option>
+                    <option value="radial">Radial Gradient</option>
+                  </select>
+                </div>
+
+                <div class="color-picker-group">
+                  <label for="qr-cornersSquare-color" class="body-s"
+                    >External shape color</label
+                  >
+                  <div class="color-pickers">
+                    <input
+                      id="qr-cornersSquare-color"
+                      type="color"
+                      class="color-picker"
+                      value="#000000"
+                    />
+                    <input
+                      id="qr-cornersSquare-color-2"
+                      type="color"
+                      class="color-picker gradient-color hidden"
+                      aria-label="Gradient second color"
+                      value="#000000"
+                    />
+                  </div>
+                </div>
               </div>
 
-              <div class="select-group">
-                <label
-                  for="qr-cornersDot-fill"
-                  id="qr-cornersDot-fill-label"
-                  class="body-s"
-                  >Internal shape fill
-                </label>
-                <select
-                  id="qr-cornersDot-fill"
-                  class="select"
-                  aria-labelledby="qr-cornersDot-fill-label"
-                >
-                  <option value="single">Single Color</option>
-                  <option value="linear">Linear Gradient</option>
-                  <option value="radial">Radial Gradient</option>
-                </select>
-              </div>
+              <hr class="accordion-hr" />
 
-              <div class="color-picker-group">
-                <label for="qr-cornersDot-color" class="body-s"
-                  >Internal shape color</label
-                >
-                <div class="color-pickers">
-                  <input
-                    id="qr-cornersDot-color"
-                    type="color"
-                    class="color-picker"
-                    value="#000000"
-                  />
-                  <input
-                    id="qr-cornersDot-color-2"
-                    type="color"
-                    class="color-picker gradient-color hidden"
-                    aria-label="Gradient second color"
-                    value="#000000"
-                  />
+              <div class="accordion-controls">
+                <div class="select-group">
+                  <label
+                    for="qr-cornersDot-style"
+                    id="qr-cornersDot-style-label"
+                    class="body-s"
+                    >Internal shape style
+                  </label>
+                  <select
+                    id="qr-cornersDot-style"
+                    class="select"
+                    aria-labelledby="qr-cornersDot-style-label"
+                  >
+                    <option value="square">Square</option>
+                    <option value="dot">Dot</option>
+                  </select>
+                </div>
+
+                <div class="select-group">
+                  <label
+                    for="qr-cornersDot-fill"
+                    id="qr-cornersDot-fill-label"
+                    class="body-s"
+                    >Internal shape fill
+                  </label>
+                  <select
+                    id="qr-cornersDot-fill"
+                    class="select"
+                    aria-labelledby="qr-cornersDot-fill-label"
+                  >
+                    <option value="single">Single Color</option>
+                    <option value="linear">Linear Gradient</option>
+                    <option value="radial">Radial Gradient</option>
+                  </select>
+                </div>
+
+                <div class="color-picker-group">
+                  <label for="qr-cornersDot-color" class="body-s"
+                    >Internal shape color</label
+                  >
+                  <div class="color-pickers">
+                    <input
+                      id="qr-cornersDot-color"
+                      type="color"
+                      class="color-picker"
+                      value="#000000"
+                    />
+                    <input
+                      id="qr-cornersDot-color-2"
+                      type="color"
+                      class="color-picker gradient-color hidden"
+                      aria-label="Gradient second color"
+                      value="#000000"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </details>
-      </div>
+          </details>
+        </div>
 
-      <!-- File type -->
-      <div class="content-group form-group">
-        <label for="qr-file-type" id="qr-file-type-label" class="body-s">
-          File type
-        </label>
-        <select
-          id="qr-file-type"
-          class="select"
-          aria-labelledby="qr-file-type-label"
-        >
-          <option value="png">PNG</option>
-          <option value="svg">SVG</option>
-          <option value="webp">WEBP</option>
-          <option value="jpeg">JPEG</option>
-        </select>
-      </div>
+        <!-- File type -->
+        <div class="content-group form-group">
+          <label for="qr-file-type" id="qr-file-type-label" class="body-s">
+            File type
+          </label>
+          <select
+            id="qr-file-type"
+            class="select"
+            aria-labelledby="qr-file-type-label"
+          >
+            <option value="png">PNG</option>
+            <option value="svg">SVG</option>
+            <option value="webp">WEBP</option>
+            <option value="jpeg">JPEG</option>
+          </select>
+        </div>
 
-      <!-- Action buttons -->
-      <div class="content-group button-group">
-        <button
-          id="add-qr"
-          type="button"
-          class="input-full"
-          aria-label="Add QR Code"
-          data-appearance="primary"
-        >
-          Add QR Code
-        </button>
-        <button
-          id="download-qr"
-          type="button"
-          class="input-full"
-          aria-label="Download QR Code"
-          data-appearance="secondary"
-        >
-          Download
-        </button>
-      </div>
+        <!-- Action buttons -->
+        <div class="content-group button-group">
+          <button
+            id="add-qr"
+            type="button"
+            class="input-full"
+            aria-label="Add QR Code"
+            data-appearance="primary"
+          >
+            Add QR Code
+          </button>
+          <button
+            id="download-qr"
+            type="button"
+            class="input-full"
+            aria-label="Download QR Code"
+            data-appearance="secondary"
+          >
+            Download
+          </button>
+        </div>
+      </section>
 
       <footer class="content-footer">
         <a
