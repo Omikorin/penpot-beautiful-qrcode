@@ -2,6 +2,8 @@
 
 Transform ordinary QR codes into vibrant design elements directly within Penpot! This plugin allow designers to create custom, visually appealing QR codes.
 
+![Plugin preview](screenshot.png)
+
 ## ✨ Why Beautiful QR Code?
 
 - **Rich Customization**: Create unique QR codes with gradients, patterns, custom colors, and logos
