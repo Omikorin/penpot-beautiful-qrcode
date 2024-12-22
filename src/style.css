@@ -242,16 +242,6 @@ main {
   color: var(--accent-primary);
 }
 
-.heart-icon {
-  display: inline-flex;
-  color: #ff4f4f;
-}
-
-.heart-icon svg {
-  width: 14px;
-  height: 14px;
-}
-
 .footer-accent {
   font-weight: 500;
 }

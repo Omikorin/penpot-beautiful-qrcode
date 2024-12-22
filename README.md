@@ -54,6 +54,9 @@ bun run build
 
 Contributions are welcome! Feel free to submit issues and pull requests.
 
+## 🙏 Acknowledgments
+Thanks to Feather Icons for their beautiful open source icons.
+
 ## 📄 License
 
 This project is licensed under the [ISC license](./LICENSE).
