@@ -1,6 +1,9 @@
 import type { PluginEvent } from './types';
 
-penpot.ui.open('Beautiful QR Code', `?theme=${penpot.theme}`);
+penpot.ui.open('Beautiful QR Code', `?theme=${penpot.theme}`, {
+  width: 285,
+  height: 770,
+});
 
 penpot.ui.onMessage<PluginEvent>(async (message) => {
   if (message.type === 'add-qr') {
