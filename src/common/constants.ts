@@ -11,7 +11,4 @@ export const elementIds = [
   '#logo-margin-slider',
   '#logo-margin-slider-value',
   '#remove-logo',
-  '#background-rotation-control',
-  '#qr-background-rotation-slider',
-  '#qr-background-rotation-slider-value',
 ] as const;
