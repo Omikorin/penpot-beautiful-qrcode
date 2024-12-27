@@ -205,7 +205,7 @@ export class QRCodeManager {
 
       this.colorInputs[type as UpdateGradientType].rotation!.value = value;
       this.colorInputs[type as UpdateGradientType].rotationInput!.value = value;
-      this.options[optionKey]!.gradient!.rotation = parseInt(value);
+      this.options[optionKey]!.gradient!.rotation = parseInt(value) * (Math.PI / 180);
     }
 
     this.generateQR();
@@ -352,7 +352,7 @@ export class QRCodeManager {
         { offset: 0, color: colorInputs.primary.value },
         { offset: 1, color: colorInputs.secondary.value },
       ],
-      rotation: parseInt(colorInputs.rotation.value),
+      rotation: parseInt(colorInputs.rotation.value) * (Math.PI / 180),
     };
 
     this.options[optionId]!.color = undefined;
