@@ -25,12 +25,39 @@ export class QRCodeManager {
     {
       primary: HTMLInputElement | null;
       secondary: HTMLInputElement | null;
+      rotationControl: HTMLElement | null;
+      rotation: HTMLInputElement | null;
+      rotationInput: HTMLInputElement | null;
     }
   > = {
-    background: { primary: null, secondary: null },
-    dots: { primary: null, secondary: null },
-    cornersDot: { primary: null, secondary: null },
-    cornersSquare: { primary: null, secondary: null },
+    background: {
+      primary: null,
+      secondary: null,
+      rotationControl: null,
+      rotation: null,
+      rotationInput: null,
+    },
+    dots: {
+      primary: null,
+      secondary: null,
+      rotationControl: null,
+      rotation: null,
+      rotationInput: null,
+    },
+    cornersDot: {
+      primary: null,
+      secondary: null,
+      rotationControl: null,
+      rotation: null,
+      rotationInput: null,
+    },
+    cornersSquare: {
+      primary: null,
+      secondary: null,
+      rotationControl: null,
+      rotation: null,
+      rotationInput: null,
+    },
   };
 
   constructor() {
@@ -104,6 +131,11 @@ export class QRCodeManager {
       this.colorInputs[key] = {
         primary: document.querySelector(`#qr-${type}-color`),
         secondary: document.querySelector(`#qr-${type}-color-2`),
+        rotationControl: document.querySelector(`#qr-${type}-rotation`),
+        rotation: document.querySelector(`#qr-${type}-rotation-slider`),
+        rotationInput: document.querySelector(
+          `#qr-${type}-rotation-slider-value`,
+        ),
       };
     });
   }
@@ -121,8 +153,8 @@ export class QRCodeManager {
 
       if (id === 'qr-content') {
         this.handleContentChange(e as InputEvent);
-      } else if (id.includes('margin')) {
-        this.handleMarginChange(e as InputEvent);
+      } else if (id.includes('slider')) {
+        this.handleSliderChange(e as InputEvent);
       } else if (id.includes('color')) {
         this.handleColorChange(e as InputEvent);
       } else if (id.includes('style')) {
@@ -146,22 +178,34 @@ export class QRCodeManager {
     this.generateQR();
   }
 
-  private handleMarginChange(e: InputEvent): void {
+  private handleSliderChange(e: InputEvent): void {
     const target = e.target as HTMLInputElement;
     const value = target.value;
     if (!value) return;
 
     const isMainMargin = target.id.includes('qr-margin');
     const isLogoMargin = target.id.includes('logo-margin');
+    const isRotation = target.id.includes('rotation');
 
     if (isMainMargin) {
-      const marginValue = this.getInputElement('#qr-margin-value');
-      if (marginValue) marginValue.value = value;
+      const slider = this.getInputElement('#qr-margin-slider');
+      const sliderValue = this.getInputElement('#qr-margin-slider-value');
+      if (slider) slider.value = value;
+      if (sliderValue) sliderValue.value = value;
       this.options.margin = parseInt(value);
     } else if (isLogoMargin) {
-      const logoMarginValue = this.getInputElement('#logo-margin-value');
-      if (logoMarginValue) logoMarginValue.value = value;
+      const slider = this.getInputElement('#logo-margin-slider');
+      const sliderValue = this.getInputElement('#logo-margin-slider-value');
+      if (slider) slider.value = value;
+      if (sliderValue) sliderValue.value = value;
       this.options.imageOptions!.margin = parseInt(value);
+    } else if (isRotation) {
+      const [, type] = target.id.split('-');
+      const optionKey = `${type}Options` as UpdateColorOptionsType;
+
+      this.colorInputs[type as UpdateGradientType].rotation!.value = value;
+      this.colorInputs[type as UpdateGradientType].rotationInput!.value = value;
+      this.options[optionKey]!.gradient!.rotation = parseInt(value);
     }
 
     this.generateQR();
@@ -169,14 +213,13 @@ export class QRCodeManager {
 
   private handleColorChange(e: InputEvent): void {
     const target = e.target as HTMLInputElement;
-    const [, type, colorType] = target.id.split('-');
+    const [, type] = target.id.split('-');
 
     if (!type || !this.colorInputs[type as UpdateGradientType]) return;
 
     const gradientType = type as UpdateGradientType;
-    const isSecondary = colorType === 'color-2';
 
-    if (this.config[gradientType].fill === 'single' && !isSecondary) {
+    if (this.config[gradientType].fill === 'single') {
       this.updateFirstColor(gradientType, target.value);
     } else {
       this.updateGradient(gradientType);
@@ -299,7 +342,8 @@ export class QRCodeManager {
     if (fill === 'single') return;
 
     const colorInputs = this.colorInputs[type];
-    if (!colorInputs.primary || !colorInputs.secondary) return;
+    if (!colorInputs.primary || !colorInputs.secondary || !colorInputs.rotation)
+      return;
 
     const optionId = `${type}Options` as UpdateColorOptionsType;
     this.options[optionId]!.gradient = {
@@ -308,6 +352,7 @@ export class QRCodeManager {
         { offset: 0, color: colorInputs.primary.value },
         { offset: 1, color: colorInputs.secondary.value },
       ],
+      rotation: parseInt(colorInputs.rotation.value),
     };
 
     this.options[optionId]!.color = undefined;
@@ -317,9 +362,20 @@ export class QRCodeManager {
     this.config[type].fill = fill;
     const colorInputs = this.colorInputs[type];
 
-    if (!colorInputs.primary || !colorInputs.secondary) return;
+    if (
+      !colorInputs.primary ||
+      !colorInputs.secondary ||
+      !colorInputs.rotationControl
+    )
+      return;
 
     const optionId = `${type}Options` as UpdateColorOptionsType;
+
+    if (fill === 'linear') {
+      colorInputs.rotationControl.classList.remove('hidden');
+    } else {
+      colorInputs.rotationControl.classList.add('hidden');
+    }
 
     if (fill === 'single') {
       colorInputs.secondary.classList.add('hidden');
@@ -417,10 +473,34 @@ export class QRCodeManager {
     this.elements = {};
 
     this.colorInputs = {
-      background: { primary: null, secondary: null },
-      dots: { primary: null, secondary: null },
-      cornersDot: { primary: null, secondary: null },
-      cornersSquare: { primary: null, secondary: null },
+      background: {
+        primary: null,
+        secondary: null,
+        rotationControl: null,
+        rotation: null,
+        rotationInput: null,
+      },
+      dots: {
+        primary: null,
+        secondary: null,
+        rotationControl: null,
+        rotation: null,
+        rotationInput: null,
+      },
+      cornersDot: {
+        primary: null,
+        secondary: null,
+        rotationControl: null,
+        rotation: null,
+        rotationInput: null,
+      },
+      cornersSquare: {
+        primary: null,
+        secondary: null,
+        rotationControl: null,
+        rotation: null,
+        rotationInput: null,
+      },
     };
 
     this.config = this.initializeConfig();

@@ -76,7 +76,7 @@ main {
   }
 }
 
-.margin-group {
+.slider-group {
   display: flex;
 
   input[type='range'] {
