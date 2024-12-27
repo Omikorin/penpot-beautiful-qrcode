@@ -50,6 +50,11 @@ bun run dev
 bun run build
 ```
 
+Next, install the plugin using this link:
+```
+http://localhost:4400/manifest.local.json
+```
+
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to submit issues and pull requests.

@@ -1,0 +1,11 @@
+{
+  "name": "[WIP] Beautiful QR Code",
+  "description": "Design vibrant QR codes",
+  "code": "plugin.js",
+  "icon": "/icon.png",
+  "permissions": [
+    "content:read",
+    "content:write",
+    "allow:downloads"
+  ]
+}
