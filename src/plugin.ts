@@ -11,9 +11,15 @@ penpot.ui.onMessage<PluginEvent>(async (message) => {
 
     if (!data || !name) return;
 
+    const center = penpot.viewport.center;
+
     if (fileType === 'svg') {
       const group = penpot.createShapeFromSvg(data);
-      if (group) group.name = name;
+      if (group) {
+        group.name = name;
+        group.x = center.x;
+        group.y = center.y;
+      }
     } else {
       const mimeType = `image/${fileType}`;
       const imageData = await penpot.uploadMediaData(
@@ -25,6 +31,8 @@ penpot.ui.onMessage<PluginEvent>(async (message) => {
       const shape = penpot.createRectangle();
       shape.resize(300, 300);
       shape.fills = [{ fillOpacity: 1, fillImage: imageData }];
+      shape.x = center.x;
+      shape.y = center.y;
     }
   }
 });
