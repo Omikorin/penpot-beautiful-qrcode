@@ -1,5 +1,10 @@
 @import '@penpot/plugin-styles/styles.css';
 
+.input:invalid {
+  border-color: var(--error-500);
+  background-color: var(--background-primary);
+}
+
 [data-theme='light'] .preview-section {
   --preview-shadow: rgba(0, 0, 0, 0.1);
 }
