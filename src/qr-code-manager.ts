@@ -2,7 +2,7 @@ import QRCodeStyling, {
   type FileExtension,
   type Options,
 } from 'qr-code-styling';
-import { elementIds } from './common/constants';
+import { elementIds, type ElementIds } from './common/constants';
 import type {
   FillType,
   PluginConfig,
@@ -100,14 +100,14 @@ export class QRCodeManager {
     };
   }
 
-  private getElement(id: string): HTMLElement | null {
+  private getElement(id: ElementIds): HTMLElement | null {
     if (!this.elements[id]) {
       this.elements[id] = document.querySelector(id);
     }
     return this.elements[id];
   }
 
-  private getInputElement(id: string): HTMLInputElement | null {
+  private getInputElement(id: ElementIds): HTMLInputElement | null {
     return this.getElement(id) as HTMLInputElement | null;
   }
 
@@ -205,7 +205,8 @@ export class QRCodeManager {
 
       this.colorInputs[type as UpdateGradientType].rotation!.value = value;
       this.colorInputs[type as UpdateGradientType].rotationInput!.value = value;
-      this.options[optionKey]!.gradient!.rotation = parseInt(value) * (Math.PI / 180);
+      this.options[optionKey]!.gradient!.rotation =
+        parseInt(value) * (Math.PI / 180);
     }
 
     this.generateQR();
@@ -316,7 +317,7 @@ export class QRCodeManager {
     const chooseFileBtn = this.getElement('#choose-file-btn');
     const logoGroup = this.getElement('#logo-group');
     const logoFilename = this.getElement('#logo-filename');
-    const logoMarginControl = this.getElement('#logo-margin-control');
+    const logoMarginControl = this.getElement('#logo-margin-slider-control');
 
     if (this.config.logoFilename) {
       chooseFileBtn?.classList.add('hidden');
