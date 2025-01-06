@@ -67,6 +67,6 @@ This project is licensed under the [ISC license](./LICENSE).
 
 ---
 
-<p align="center">Made with ❤️ for the Penpot community</p>
+<p align="center">Made with ❤️ by Michał Korczak</p>
 
 ---
