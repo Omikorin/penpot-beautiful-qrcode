@@ -21,6 +21,7 @@
     "qr-code-styling": "^1.8.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "@types/alpinejs": "^3.13.11",
     "typescript": "^5.7.2",
     "vite": "^5.4.11",
