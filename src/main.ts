@@ -1,29 +1,45 @@
-import { QRCodeManager } from './qr-code-manager';
-import './style.css';
+import Alpine from 'alpinejs';
+import './assets/style.css';
+import { downloadQR, insertQR } from './common/actions';
+import { initializeStore } from './common/store';
+import type { PluginEvent } from './common/types';
+import { colorControls } from './components/color-controls';
+import { logoControls } from './components/logo-controls';
+import { numberInput } from './components/number-input';
+import { qrContent } from './components/qr-content';
+import { qrPreview } from './components/qr-preview';
 
-const initializeApp = () => {
-  const qrManager = new QRCodeManager();
-  const container = document.querySelector('#qr-preview') as HTMLElement;
+document.addEventListener('alpine:init', () => {
+  Alpine.data('colorControls', colorControls);
+  Alpine.data('logoControls', logoControls);
+  Alpine.data('numberInput', numberInput);
+  Alpine.data('qrContent', qrContent);
+  Alpine.data('qrPreview', qrPreview);
 
-  if (container) {
-    qrManager.append(container);
-    qrManager.initializeEventListeners();
+  Alpine.data('qrActions', () => ({
+    insertQR,
+    downloadQR,
+  }));
+});
 
-    window.addEventListener('unload', () => {
-      qrManager.destroy();
-    });
-  }
-};
+window.Alpine = Alpine;
 
-document.addEventListener('DOMContentLoaded', () => initializeApp());
+initializeStore();
+Alpine.start();
 
 // theme handling
 const searchParams = new URLSearchParams(window.location.search);
 document.body.dataset.theme = searchParams.get('theme') ?? 'light';
 
 // listen plugin.ts messages
-window.addEventListener('message', (event) => {
-  if (event.data.source === 'penpot') {
-    document.body.dataset.theme = event.data.theme;
+window.addEventListener('message', (event: MessageEvent<PluginEvent>) => {
+  if (event.data.type === 'themechange') {
+    document.body.dataset.theme = event.data.content;
   }
 });
+
+declare global {
+  interface Window {
+    Alpine: typeof Alpine;
+  }
+}

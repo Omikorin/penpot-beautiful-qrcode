@@ -1,3 +1,7 @@
+export const clamp = (value: number, min: number, max: number): number => {
+  return Math.max(min, Math.min(max, value));
+};
+
 export const debounce = <T extends (...args: any[]) => void>(
   func: T,
   wait: number,

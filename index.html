@@ -9,12 +9,12 @@
     <main>
       <!-- QR preview -->
       <div class="preview-section">
-        <div id="qr-preview"></div>
+        <div id="qr-preview" x-data="qrPreview" x-ref="container"></div>
       </div>
 
       <section class="controls-section">
         <!-- QR code content -->
-        <div class="text-content-group form-group">
+        <div class="text-content-group form-group" x-data="qrContent">
           <label for="qr-content" id="qr-content-label" class="body-s">
             QR code content
           </label>
@@ -25,8 +25,9 @@
             class="input input-full"
             placeholder="Enter text or URL"
             aria-labelledby="qr-content-label"
-            value="https://links.omikor.in"
             required
+            x-model="content"
+            @input="updateContent"
           />
         </div>
 
@@ -39,31 +40,45 @@
           >
             Margin
           </label>
-          <div class="slider-group">
+          <div
+            class="slider-group"
+            x-data="numberInput"
+            data-min="0"
+            data-max="100"
+            data-step="10"
+            data-value="10"
+            @number:update="$store.qr.state.margin = $event.detail.value"
+          >
             <input
               id="qr-margin-slider"
               type="range"
-              min="0"
-              max="100"
-              step="10"
+              :min="min"
+              :max="max"
+              :step="step"
+              x-model="sliderValue"
+              @input="updateFromSlider"
               aria-labelledby="qr-margin-slider-label"
-              value="10"
             />
             <input
               id="qr-margin-slider-value"
               type="number"
-              min="0"
-              max="100"
+              :min="min"
+              :max="max"
               class="input"
+              x-model.number="value"
+              @input="updateFromInput"
+              @blur="validateInput"
               aria-labelledby="qr-margin-slider-label"
-              value="10"
               required
             />
           </div>
         </div>
 
-        <!-- Logo -->
-        <div class="content-group form-group logo-container-group">
+        <!-- Logo controls -->
+        <div
+          class="content-group form-group logo-container-group"
+          x-data="logoControls"
+        >
           <label for="choose-file-btn" id="choose-file-label" class="body-s">
             Logo
           </label>
@@ -74,7 +89,10 @@
             class="input-label-hidden"
             tabindex="-1"
             aria-hidden="true"
+            x-ref="fileInput"
+            @change="handleFile($event)"
           />
+
           <!-- No logo uploaded state -->
           <button
             id="choose-file-btn"
@@ -82,6 +100,8 @@
             class="input-full button-with-icon"
             aria-label="Upload logo"
             data-appearance="secondary"
+            x-show="!hasLogo"
+            @click="$refs.fileInput.click()"
           >
             <span class="button-icon">
               <img src="/icons/upload.svg" alt="" />
@@ -90,10 +110,10 @@
           </button>
 
           <!-- Logo uploaded state -->
-          <div id="logo-group" class="logo-group hidden">
+          <div id="logo-group" class="logo-group" x-show="hasLogo">
             <div class="logo-display">
               <img src="/icons/upload.svg" alt="" />
-              <span id="logo-filename" class="body-s">filename.png</span>
+              <span id="logo-filename" class="body-s" x-text="filename"></span>
             </div>
             <button
               id="remove-logo"
@@ -101,13 +121,18 @@
               class="button-icon-only"
               aria-label="Remove logo"
               data-appearance="secondary"
+              @click="removeLogo"
             >
               <img src="/icons/trash-2.svg" alt="" />
             </button>
           </div>
 
-          <!-- Logo margin control (initially hidden) -->
-          <div id="logo-margin-slider-control" class="margin-control hidden">
+          <!-- Logo margin control -->
+          <div
+            id="logo-margin-slider-control"
+            class="margin-control"
+            x-show="hasLogo"
+          >
             <label
               for="logo-margin-slider"
               id="logo-margin-slider-label"
@@ -123,7 +148,8 @@
                 max="20"
                 step="1"
                 aria-labelledby="logo-margin-slider-label"
-                value="0"
+                x-model.number="$store.qr.state.logo.margin"
+                @input="updateMargin($event)"
               />
               <input
                 id="logo-margin-slider-value"
@@ -132,7 +158,8 @@
                 max="20"
                 class="input"
                 aria-labelledby="logo-margin-slider-label"
-                value="0"
+                x-model.number="$store.qr.state.logo.margin"
+                @input="updateMargin($event)"
                 required
               />
             </div>
@@ -150,19 +177,26 @@
                 alt=""
               />
             </summary>
-            <div class="accordion-content">
+            <div
+              class="accordion-content"
+              x-data="colorControls"
+              data-type="background"
+            >
               <div class="accordion-controls">
                 <div class="select-group">
                   <label
                     for="qr-background-fill"
                     id="qr-background-fill-label"
                     class="body-s"
-                    >Fill
+                  >
+                    Fill
                   </label>
                   <select
                     id="qr-background-fill"
                     class="select"
                     aria-labelledby="qr-background-fill-label"
+                    x-model="element.fill"
+                    @change="updateFill($event)"
                   >
                     <option value="single">Single Color</option>
                     <option value="linear">Linear Gradient</option>
@@ -177,19 +211,22 @@
                       id="qr-background-color"
                       type="color"
                       class="color-picker"
-                      value="#ffffff"
+                      x-model="element.color"
+                      @input="updateColor($event)"
                     />
                     <input
                       id="qr-background-color-2"
                       type="color"
-                      class="color-picker gradient-color hidden"
+                      class="color-picker gradient-color"
                       aria-label="Gradient second color"
-                      value="#ffffff"
+                      x-show="showSecondaryColor"
+                      x-model="element.colorSecondary"
+                      @input="updateColor($event, true)"
                     />
                   </div>
                 </div>
 
-                <div id="qr-background-rotation" class="hidden">
+                <div id="qr-background-rotation" x-show="showRotation">
                   <label
                     for="qr-background-rotation-slider"
                     id="qr-background-rotation-slider-label"
@@ -197,24 +234,35 @@
                   >
                     Rotation
                   </label>
-                  <div class="slider-group">
+                  <div
+                    class="slider-group"
+                    x-data="numberInput"
+                    data-min="0"
+                    data-max="360"
+                    data-step="1"
+                    :data-value="element.rotation || 0"
+                    @number:update="updateRotation($event)"
+                  >
                     <input
                       id="qr-background-rotation-slider"
-                      aria-labelledby="qr-background-rotation-slider-label"
                       type="range"
-                      min="0"
-                      max="360"
-                      step="1"
-                      value="0"
+                      :min="min"
+                      :max="max"
+                      :step="step"
+                      x-model="sliderValue"
+                      @input="updateFromSlider"
+                      aria-labelledby="qr-background-rotation-slider-label"
                     />
                     <input
                       id="qr-background-rotation-slider-value"
-                      aria-labelledby="qr-background-rotation-slider-label"
                       type="number"
-                      min="0"
-                      max="360"
+                      :min="min"
+                      :max="max"
                       class="input"
-                      value="0"
+                      x-model.number="value"
+                      @input="updateFromInput"
+                      @blur="validateInput"
+                      aria-labelledby="qr-background-rotation-slider-label"
                       required
                     />
                   </div>
@@ -235,19 +283,27 @@
                 alt=""
               />
             </summary>
-            <div class="accordion-content">
+            <div
+              class="accordion-content"
+              x-data="colorControls"
+              data-type="dots"
+            >
               <div class="accordion-controls">
+                <!-- Style selector -->
                 <div class="select-group">
                   <label
                     for="qr-dots-style"
                     id="qr-dots-style-label"
                     class="body-s"
-                    >Style
+                  >
+                    Style
                   </label>
                   <select
                     id="qr-dots-style"
                     class="select"
                     aria-labelledby="qr-dots-style-label"
+                    x-model="$store.qr.state.elements.dots.style"
+                    @change="$dispatch('qr:update')"
                   >
                     <option value="square">Square</option>
                     <option value="dots">Dots</option>
@@ -258,17 +314,21 @@
                   </select>
                 </div>
 
+                <!-- Fill type selector -->
                 <div class="select-group">
                   <label
                     for="qr-dots-fill"
                     id="qr-dots-fill-label"
                     class="body-s"
-                    >Fill
+                  >
+                    Fill
                   </label>
                   <select
                     id="qr-dots-fill"
                     class="select"
                     aria-labelledby="qr-dots-fill-label"
+                    x-model="element.fill"
+                    @change="updateFill($event)"
                   >
                     <option value="single">Single Color</option>
                     <option value="linear">Linear Gradient</option>
@@ -276,6 +336,7 @@
                   </select>
                 </div>
 
+                <!-- Color pickers -->
                 <div class="color-picker-group">
                   <label for="qr-dots-color" class="body-s">Color</label>
                   <div class="color-pickers">
@@ -283,19 +344,23 @@
                       id="qr-dots-color"
                       type="color"
                       class="color-picker"
-                      value="#000000"
+                      x-model="element.color"
+                      @input="updateColor($event)"
                     />
                     <input
                       id="qr-dots-color-2"
                       type="color"
-                      class="color-picker gradient-color hidden"
+                      class="color-picker gradient-color"
                       aria-label="Gradient second color"
-                      value="#000000"
+                      x-show="showSecondaryColor"
+                      x-model="element.colorSecondary"
+                      @input="updateColor($event, true)"
                     />
                   </div>
                 </div>
 
-                <div id="qr-dots-rotation" class="hidden">
+                <!-- Rotation control -->
+                <div id="qr-dots-rotation" x-show="showRotation">
                   <label
                     for="qr-dots-rotation-slider"
                     id="qr-dots-rotation-slider-label"
@@ -311,7 +376,8 @@
                       min="0"
                       max="360"
                       step="1"
-                      value="0"
+                      x-model.number="element.rotation"
+                      @input="updateRotation($event)"
                     />
                     <input
                       id="qr-dots-rotation-slider-value"
@@ -320,7 +386,8 @@
                       min="0"
                       max="360"
                       class="input"
-                      value="0"
+                      x-model.number="element.rotation"
+                      @input="updateRotation($event)"
                       required
                     />
                   </div>
@@ -342,18 +409,26 @@
               />
             </summary>
             <div class="accordion-content">
-              <div class="accordion-controls">
+              <!-- External corners -->
+              <div
+                class="accordion-controls"
+                x-data="colorControls"
+                data-type="cornersSquare"
+              >
                 <div class="select-group">
                   <label
                     for="qr-cornersSquare-style"
                     id="qr-cornersSquare-style-label"
                     class="body-s"
-                    >External shape style
+                  >
+                    External shape style
                   </label>
                   <select
                     id="qr-cornersSquare-style"
                     class="select"
                     aria-labelledby="qr-cornersSquare-style-label"
+                    x-model="$store.qr.state.elements.cornersSquare.style"
+                    @change="$dispatch('qr:update')"
                   >
                     <option value="square">Square</option>
                     <option value="dot">Dot</option>
@@ -366,12 +441,15 @@
                     for="qr-cornersSquare-fill"
                     id="qr-cornersSquare-fill-label"
                     class="body-s"
-                    >External shape fill
+                  >
+                    External shape fill
                   </label>
                   <select
                     id="qr-cornersSquare-fill"
                     class="select"
                     aria-labelledby="qr-cornersSquare-fill-label"
+                    x-model="element.fill"
+                    @change="updateFill($event)"
                   >
                     <option value="single">Single Color</option>
                     <option value="linear">Linear Gradient</option>
@@ -380,27 +458,30 @@
                 </div>
 
                 <div class="color-picker-group">
-                  <label for="qr-cornersSquare-color" class="body-s"
-                    >External shape color</label
-                  >
+                  <label for="qr-cornersSquare-color" class="body-s">
+                    External shape color
+                  </label>
                   <div class="color-pickers">
                     <input
                       id="qr-cornersSquare-color"
                       type="color"
                       class="color-picker"
-                      value="#000000"
+                      x-model="element.color"
+                      @input="updateColor($event)"
                     />
                     <input
                       id="qr-cornersSquare-color-2"
                       type="color"
-                      class="color-picker gradient-color hidden"
+                      class="color-picker gradient-color"
                       aria-label="Gradient second color"
-                      value="#000000"
+                      x-show="showSecondaryColor"
+                      x-model="element.colorSecondary"
+                      @input="updateColor($event, true)"
                     />
                   </div>
                 </div>
 
-                <div id="qr-cornersSquare-rotation" class="hidden">
+                <div id="qr-cornersSquare-rotation" x-show="showRotation">
                   <label
                     for="qr-cornersSquare-rotation-slider"
                     id="qr-cornersSquare-rotation-slider-label"
@@ -416,7 +497,8 @@
                       min="0"
                       max="360"
                       step="1"
-                      value="0"
+                      x-model.number="element.rotation"
+                      @input="updateRotation($event)"
                     />
                     <input
                       id="qr-cornersSquare-rotation-slider-value"
@@ -425,7 +507,8 @@
                       min="0"
                       max="360"
                       class="input"
-                      value="0"
+                      x-model.number="element.rotation"
+                      @input="updateRotation($event)"
                       required
                     />
                   </div>
@@ -434,18 +517,26 @@
 
               <hr class="accordion-hr" />
 
-              <div class="accordion-controls">
+              <!-- Internal corners -->
+              <div
+                class="accordion-controls"
+                x-data="colorControls"
+                data-type="cornersDot"
+              >
                 <div class="select-group">
                   <label
                     for="qr-cornersDot-style"
                     id="qr-cornersDot-style-label"
                     class="body-s"
-                    >Internal shape style
+                  >
+                    Internal shape style
                   </label>
                   <select
                     id="qr-cornersDot-style"
                     class="select"
                     aria-labelledby="qr-cornersDot-style-label"
+                    x-model="$store.qr.state.elements.cornersDot.style"
+                    @change="$dispatch('qr:update')"
                   >
                     <option value="square">Square</option>
                     <option value="dot">Dot</option>
@@ -457,12 +548,15 @@
                     for="qr-cornersDot-fill"
                     id="qr-cornersDot-fill-label"
                     class="body-s"
-                    >Internal shape fill
+                  >
+                    Internal shape fill
                   </label>
                   <select
                     id="qr-cornersDot-fill"
                     class="select"
                     aria-labelledby="qr-cornersDot-fill-label"
+                    x-model="element.fill"
+                    @change="updateFill($event)"
                   >
                     <option value="single">Single Color</option>
                     <option value="linear">Linear Gradient</option>
@@ -471,27 +565,30 @@
                 </div>
 
                 <div class="color-picker-group">
-                  <label for="qr-cornersDot-color" class="body-s"
-                    >Internal shape color</label
-                  >
+                  <label for="qr-cornersDot-color" class="body-s">
+                    Internal shape color
+                  </label>
                   <div class="color-pickers">
                     <input
                       id="qr-cornersDot-color"
                       type="color"
                       class="color-picker"
-                      value="#000000"
+                      x-model="element.color"
+                      @input="updateColor($event)"
                     />
                     <input
                       id="qr-cornersDot-color-2"
                       type="color"
-                      class="color-picker gradient-color hidden"
+                      class="color-picker gradient-color"
                       aria-label="Gradient second color"
-                      value="#000000"
+                      x-show="showSecondaryColor"
+                      x-model="element.colorSecondary"
+                      @input="updateColor($event, true)"
                     />
                   </div>
                 </div>
 
-                <div id="qr-cornersDot-rotation" class="hidden">
+                <div id="qr-cornersDot-rotation" x-show="showRotation">
                   <label
                     for="qr-cornersDot-rotation-slider"
                     id="qr-cornersDot-rotation-slider-label"
@@ -507,7 +604,8 @@
                       min="0"
                       max="360"
                       step="1"
-                      value="0"
+                      x-model.number="element.rotation"
+                      @input="updateRotation($event)"
                     />
                     <input
                       id="qr-cornersDot-rotation-slider-value"
@@ -516,7 +614,8 @@
                       min="0"
                       max="360"
                       class="input"
-                      value="0"
+                      x-model.number="element.rotation"
+                      @input="updateRotation($event)"
                       required
                     />
                   </div>
@@ -527,7 +626,7 @@
         </div>
 
         <!-- File type -->
-        <div class="content-group form-group">
+        <div class="content-group form-group" x-data>
           <label for="qr-file-type" id="qr-file-type-label" class="body-s">
             File type
           </label>
@@ -535,6 +634,7 @@
             id="qr-file-type"
             class="select"
             aria-labelledby="qr-file-type-label"
+            x-model="$store.qr.state.fileType"
           >
             <option value="png">PNG</option>
             <option value="svg">SVG</option>
@@ -544,13 +644,14 @@
         </div>
 
         <!-- Action buttons -->
-        <div class="content-group button-group">
+        <div class="content-group button-group" x-data="qrActions">
           <button
-            id="add-qr"
+            id="insert-qr"
             type="button"
             class="input-full"
             aria-label="Add QR Code"
             data-appearance="primary"
+            @click="insertQR"
           >
             Add QR Code
           </button>
@@ -560,6 +661,7 @@
             class="input-full"
             aria-label="Download QR Code"
             data-appearance="secondary"
+            @click="downloadQR"
           >
             Download
           </button>

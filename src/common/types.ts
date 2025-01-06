@@ -1,3 +1,4 @@
+import type { Theme } from '@penpot/plugin-types';
 import type { FileExtension, GradientType } from 'qr-code-styling';
 
 export type FillType = 'single' | GradientType;
@@ -28,8 +29,8 @@ export type UpdateGradientType =
 export type UpdateColorOptionsType = `${UpdateGradientType}Options`;
 
 // Penpot integration types
-export interface PluginAddSVGEvent {
-  type: 'add-qr';
+export interface InsertSVGEvent {
+  type: 'insert-qr';
   content: {
     fileType: Extract<FileExtension, 'svg'>;
     data: string;
@@ -37,8 +38,8 @@ export interface PluginAddSVGEvent {
   };
 }
 
-export interface PluginAddImageEvent {
-  type: 'add-qr';
+export interface InsertImageEvent {
+  type: 'insert-qr';
   content: {
     fileType: Exclude<FileExtension, 'svg'>;
     data: ArrayBuffer;
@@ -46,6 +47,13 @@ export interface PluginAddImageEvent {
   };
 }
 
-export type PluginAddEvent = PluginAddSVGEvent | PluginAddImageEvent;
+export type InsertEvent = InsertSVGEvent | InsertImageEvent;
 
-export type PluginEvent = PluginAddEvent;
+export type PluginUIEvent = InsertEvent;
+
+export interface ThemeChangeEvent {
+  type: 'themechange';
+  content: Theme;
+}
+
+export type PluginEvent = ThemeChangeEvent;
