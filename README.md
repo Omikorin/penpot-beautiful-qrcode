@@ -8,7 +8,6 @@ Transform ordinary QR codes into vibrant design elements directly within Penpot!
 
 - **Rich Customization**: Create unique QR codes with gradients, patterns, custom colors, and logos
 - **Accessible**: Built with accessibility in mind
-- **Zero Dependencies** (buzzword): Lightweight plugin built without external frameworks
 - **Instant Preview**: See your changes in real-time with always on top preview
 - **Multiple Export Options**: Save your QR codes in PNG, SVG, WEBP, or JPEG format
 
