@@ -18,12 +18,12 @@
   "license": "ISC",
   "dependencies": {
     "@penpot/plugin-styles": "1.1.0",
-    "@penpot/plugin-types": "1.1.0",
     "alpinejs": "^3.14.8",
     "qr-code-styling": "^1.8.4"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@penpot/plugin-types": "1.1.0",
     "@types/alpinejs": "^3.13.11",
     "typescript": "^5.7.2",
     "vite": "^5.4.11",
