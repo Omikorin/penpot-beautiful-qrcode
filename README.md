@@ -27,7 +27,7 @@ Transform ordinary QR codes into vibrant design elements directly within Penpot!
 
 ## 🚀 Getting Started
 
-1. Visit the [Penpot Plugins Hub](https://penpot.app/penpothub/plugins)
+1. Visit the [Penpot Plugins Hub](https://penpot.app/penpothub/plugins/beautiful-qr-code)
 2. Click the "Install" button for Beautiful QR Code
 3. Alternative installation: Use this manifest link in Penpot's plugin installer:
    ```
