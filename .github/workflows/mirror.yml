@@ -1,0 +1,30 @@
+name: Sync Mirror
+
+on:
+  push:
+    branches: ['main']
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+  schedule:
+    - cron: '0 0 * * *' # at the end of the day
+
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these mirror deployments to complete.
+concurrency:
+  group: 'mirror'
+  cancel-in-progress: false
+
+jobs:
+  codeberg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url: "git@codeberg.org:Omikorin/penpot-beautiful-qrcode.git"
+          ssh_private_key: ${{ secrets.CODEBERG_SSH_KEY }}
