@@ -18,13 +18,18 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  codeberg:
+  mirror:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target_host:
+          - codeberg.org
+          - git.disroot.org
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: '0'
       - uses: pixta-dev/repository-mirroring-action@v1
         with:
-          target_repo_url: "git@codeberg.org:Omikorin/penpot-beautiful-qrcode.git"
-          ssh_private_key: ${{ secrets.CODEBERG_SSH_KEY }}
+          target_repo_url: "git@${{ matrix.target_host }}:${{ github.repository }}.git"
+          ssh_private_key: ${{ secrets.MIRROR_SSH_KEY }}
