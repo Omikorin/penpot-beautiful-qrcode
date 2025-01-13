@@ -65,6 +65,10 @@ Thanks to Feather Icons for their beautiful open source icons.
 
 This project is licensed under the [ISC license](./LICENSE).
 
+### Trademark
+
+The word "QR Code" is a registered trademark of [DENSO WAVE INCORPORATED](http://www.denso-wave.com/en/).
+
 ---
 
 <p align="center">Made with ❤️ by Michał Korczak</p>
