@@ -93,11 +93,13 @@ export const initializeStore = () => {
         if (element.fill === 'single') {
           options[key] = {
             color: element.color,
+            // biome-ignore lint/suspicious/noExplicitAny: polymorphic type
             type: element.style as any,
             gradient: undefined,
           };
         } else {
           options[key] = {
+            // biome-ignore lint/suspicious/noExplicitAny: polymorphic type
             type: element.style as any,
             gradient: {
               type: element.fill,
