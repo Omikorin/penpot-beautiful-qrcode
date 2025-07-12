@@ -1,17 +1,17 @@
 {
-  "lockfileVersion": 0,
+  "lockfileVersion": 1,
   "workspaces": {
     "": {
       "dependencies": {
-        "@penpot/plugin-styles": "1.1.0",
-        "alpinejs": "^3.14.8",
+        "@penpot/plugin-styles": "1.3.2",
+        "alpinejs": "^3.14.9",
         "qr-code-styling": "^1.8.4",
       },
       "devDependencies": {
         "@biomejs/biome": "^1.9.4",
-        "@penpot/plugin-types": "1.1.0",
+        "@penpot/plugin-types": "1.3.2",
         "@types/alpinejs": "^3.13.11",
-        "typescript": "^5.7.2",
+        "typescript": "^5.8.3",
         "vite": "^5.4.11",
         "vite-live-preview": "^0.3.2",
       },
@@ -84,9 +84,9 @@
 
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.21.5", "", { "os": "win32", "cpu": "x64" }, "sha512-tQd/1efJuzPC6rCFwEvLtci/xNFcTZknmXs98FYDfGE4wP9ClFV98nyKrzJKVPMhdDnjzLhdUyMX4PsQAPjwIw=="],
 
-    "@penpot/plugin-styles": ["@penpot/plugin-styles@1.1.0", "", {}, "sha512-Y96rZ1WrDqm4YsGTWHdO0i3nqtpW9CzTMDy48ivQYHYDwx4CEQfxy9aLKeIdno4rGkQTHcdssPyKbkTxSdjP4Q=="],
+    "@penpot/plugin-styles": ["@penpot/plugin-styles@1.3.2", "", {}, "sha512-/xeJpAujCoeN2oMxNsr31EcCpZ2ztmy8LIvG19GEXgwdaRXLWjh6P5FNptk7jBybOMxeI6o18Woy8oB0j+LqYQ=="],
 
-    "@penpot/plugin-types": ["@penpot/plugin-types@1.1.0", "", {}, "sha512-MhdWLE0HTPDcameX0iKyyYHc+lYgn4+Hfa5SbkBq2o2Pu8v8bbjN0HwWOkSGqgAyqQj7BtlIkj/VN0kcckITlw=="],
+    "@penpot/plugin-types": ["@penpot/plugin-types@1.3.2", "", {}, "sha512-f0kmmZaFNs9sGtSmqmSJQYCs5Qt+KYgTD8RneUjL+Dv+zfNQnd5e4L+iHSYFJ4HWvcDvTiK7F/gya7PwMTu7WA=="],
 
     "@rollup/rollup-android-arm-eabi": ["@rollup/rollup-android-arm-eabi@4.28.1", "", { "os": "android", "cpu": "arm" }, "sha512-2aZp8AES04KI2dy3Ss6/MDjXbwBzj+i0GqKtWXgw2/Ma6E4jJvujryO6gJAghIRVz7Vwr9Gtl/8na3nDUKpraQ=="],
 
@@ -144,7 +144,7 @@
 
     "@vue/shared": ["@vue/shared@3.1.5", "", {}, "sha512-oJ4F3TnvpXaQwZJNF3ZK+kLPHKarDmJjJ6jyzVNDKH9md1dptjC7lWR//jrGuLdek/U6iltWxqAnYOu8gCiOvA=="],
 
-    "alpinejs": ["alpinejs@3.14.8", "", { "dependencies": { "@vue/reactivity": "~3.1.1" } }, "sha512-wT2fuP2DXpGk/jKaglwy7S/IJpm1FD+b7U6zUrhwErjoq5h27S4dxkJEXVvhbdwyPv9U+3OkUuNLkZT4h2Kfrg=="],
+    "alpinejs": ["alpinejs@3.14.9", "", { "dependencies": { "@vue/reactivity": "~3.1.1" } }, "sha512-gqSOhTEyryU9FhviNqiHBHzgjkvtukq9tevew29fTj+ofZtfsYriw4zPirHHOAy9bw8QoL3WGhyk7QqCh5AYlw=="],
 
     "ansi-html": ["ansi-html@0.0.9", "", { "bin": { "ansi-html": "bin/ansi-html" } }, "sha512-ozbS3LuenHVxNRh/wdnN16QapUHzauqSomAl1jwwJRRsGwFwtj644lIhxfWu0Fy0acCij2+AEgHvjscq3dlVXg=="],
 
@@ -178,7 +178,7 @@
 
     "source-map-js": ["source-map-js@1.2.1", "", {}, "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA=="],
 
-    "typescript": ["typescript@5.7.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg=="],
+    "typescript": ["typescript@5.8.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ=="],
 
     "undici-types": ["undici-types@6.20.0", "", {}, "sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg=="],
 
