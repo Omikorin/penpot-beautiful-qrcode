@@ -25,5 +25,6 @@ export default defineConfig({
   },
   preview: {
     port: 4400,
+    cors: true,
   },
 });
