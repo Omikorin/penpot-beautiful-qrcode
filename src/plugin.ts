@@ -15,7 +15,7 @@ penpot.ui.onMessage<PluginUIEvent>(async (message) => {
     const undoBlockId = penpot.history.undoBlockBegin();
 
     if (fileType === 'svg') {
-      const group = penpot.createShapeFromSvg(data);
+      const group = await penpot.createShapeFromSvgWithImages(data);
       if (group) {
         group.name = name;
         group.x = center.x;
