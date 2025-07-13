@@ -1,5 +1,5 @@
 import Alpine from 'alpinejs';
-import './assets/style.css';
+import './assets/main.css';
 import { downloadQR, insertQR } from './common/actions';
 import { initializeStore } from './common/store';
 import type { PluginEvent } from './common/types';

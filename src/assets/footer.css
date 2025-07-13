@@ -1,0 +1,20 @@
+.content-footer {
+  text-align: center;
+  padding-top: var(--spacing-4);
+  margin-top: var(--spacing-8);
+  border-top: 1px solid var(--foreground-secondary);
+}
+
+.footer-link {
+  color: var(--foreground-primary);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.footer-link:hover {
+  color: var(--accent-primary);
+}
+
+.footer-accent {
+  font-weight: 500;
+}

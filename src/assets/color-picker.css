@@ -1,0 +1,31 @@
+.gradient-color.hidden {
+  display: none;
+}
+
+.color-picker-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.color-picker {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  border-radius: var(--spacing-4);
+  cursor: pointer;
+}
+
+.color-picker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.color-picker::-webkit-color-swatch {
+  border: 1px solid var(--foreground-primary);
+  border-radius: var(--spacing-4);
+}
+
+.color-picker::-webkit-color-swatch:hover {
+  border: 0.125rem solid var(--accent-primary);
+}

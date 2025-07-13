@@ -1,0 +1,20 @@
+.button-group {
+  display: grid;
+  gap: var(--spacing-8);
+}
+
+.content-group.button-group {
+  margin-top: var(--spacing-20);
+}
+
+.button-with-icon:not(.hidden) {
+  height: 33.6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+
+  .button-icon {
+    display: flex;
+  }
+}

@@ -1,0 +1,7 @@
+[data-theme='light'] .preview-section {
+  --preview-shadow: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] .preview-section {
+  --preview-shadow: rgba(255, 255, 255, 0.1);
+}

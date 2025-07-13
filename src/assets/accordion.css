@@ -1,0 +1,42 @@
+.accordion summary {
+  padding-inline: var(--spacing-8);
+  margin-left: -0.4rem;
+  border-radius: var(--spacing-8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion summary:hover {
+  background-color: var(--background-tertiary);
+}
+
+.accordion-icon {
+  transition: transform 0.2s ease;
+}
+
+.accordion[open] .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  padding: var(--spacing-8);
+  display: grid;
+  gap: var(--spacing-8);
+}
+
+.accordion-controls {
+  display: grid;
+  gap: var(--spacing-12);
+}
+
+.accordion-hr {
+  border: 1px solid var(--background-secondary);
+  width: 100%;
+}

@@ -1,0 +1,44 @@
+.content-group {
+  margin-block-start: var(--spacing-12);
+
+  label {
+    margin-inline: 0.125rem;
+  }
+}
+
+.text-content-group {
+  label {
+    margin-inline: 0.125rem;
+  }
+}
+
+.form-group {
+  input,
+  select,
+  button {
+    margin-top: 0.2rem;
+  }
+}
+
+.slider-group {
+  display: flex;
+
+  input[type='range'] {
+    flex: 1 1;
+  }
+
+  input[type='number'] {
+    flex: 0 0 auto;
+    margin-left: 20px;
+    width: 55px;
+  }
+}
+
+.select-group {
+  display: grid;
+  gap: var(--spacing-4);
+}
+
+.margin-control {
+  margin-top: var(--spacing-4);
+}

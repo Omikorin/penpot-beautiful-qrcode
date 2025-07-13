@@ -1,0 +1,11 @@
+@import '@penpot/plugin-styles/styles.css';
+@import './base.css';
+@import './layout.css';
+@import './input.css';
+@import './preview.css';
+@import './logo.css';
+@import './buttons.css';
+@import './accordion.css';
+@import './color-picker.css';
+@import './footer.css';
+@import './theme.css';

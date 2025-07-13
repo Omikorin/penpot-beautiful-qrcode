@@ -1,0 +1,20 @@
+#qr-preview {
+  background-color: var(--background-quaternary);
+  border-radius: var(--spacing-20);
+  display: flex;
+  justify-content: center;
+
+  svg,
+  canvas {
+    width: 150px;
+    height: 150px;
+  }
+
+  svg {
+    padding: 10px 0;
+  }
+
+  canvas {
+    padding: 10px;
+  }
+}

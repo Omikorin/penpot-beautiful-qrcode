@@ -1,0 +1,16 @@
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.controls-section {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.preview-section {
+  padding: var(--spacing-8);
+  box-shadow: 0 2px 4px var(--preview-shadow);
+}
