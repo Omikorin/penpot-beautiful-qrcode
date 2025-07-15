@@ -1,0 +1,16 @@
+<div id="logo-group" class="logo-group" x-show="hasLogo">
+  <div class="logo-display">
+    <img src="/icons/upload.svg" alt="" />
+    <span id="logo-filename" class="body-s" x-text="filename"></span>
+  </div>
+  <button
+    id="remove-logo"
+    type="button"
+    class="button-icon-only"
+    aria-label="Remove logo"
+    data-appearance="secondary"
+    @click="removeLogo"
+  >
+    <img src="/icons/trash-2.svg" alt="" />
+  </button>
+</div>

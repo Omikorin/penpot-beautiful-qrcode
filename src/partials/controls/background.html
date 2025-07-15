@@ -1,0 +1,23 @@
+<div class="content-group">
+  <details class="accordion">
+    <summary>
+      <span class="body-s">Background</span>
+      <img
+        class="accordion-icon"
+        src="/icons/chevron-down.svg"
+        alt=""
+      />
+    </summary>
+    <div
+      class="accordion-content"
+      x-data="colorControls"
+      data-type="background"
+    >
+      <div class="accordion-controls">
+        {{> controls/background/fill }}
+        {{> controls/background/colors }}
+        {{> controls/background/rotation }}
+      </div>
+    </div>
+  </details>
+</div>

@@ -1,0 +1,39 @@
+<div class="content-group">
+  <details class="accordion">
+    <summary>
+      <span class="body-s">Corners</span>
+      <img
+        class="accordion-icon"
+        src="/icons/chevron-down.svg"
+        alt=""
+      />
+    </summary>
+    <div class="accordion-content">
+      <!-- External corners -->
+      <div
+        class="accordion-controls"
+        x-data="colorControls"
+        data-type="cornersSquare"
+      >
+        {{> controls/corners/external/style }}
+        {{> controls/corners/external/fill }}
+        {{> controls/corners/external/colors }}
+        {{> controls/corners/external/rotation }}
+      </div>
+
+      <hr class="accordion-hr" />
+
+      <!-- Internal corners -->
+      <div
+        class="accordion-controls"
+        x-data="colorControls"
+        data-type="cornersDot"
+      >
+        {{> controls/corners/internal/style }}
+        {{> controls/corners/internal/fill }}
+        {{> controls/corners/internal/colors }}
+        {{> controls/corners/internal/rotation }}
+      </div>
+    </div>
+  </details>
+</div>

@@ -1,0 +1,23 @@
+<div class="color-picker-group">
+  <label for="qr-cornersDot-color" class="body-s">
+    Internal shape color
+  </label>
+  <div class="color-pickers">
+    <input
+      id="qr-cornersDot-color"
+      type="color"
+      class="color-picker"
+      x-model="element.color"
+      @input="updateColor($event)"
+    />
+    <input
+      id="qr-cornersDot-color-2"
+      type="color"
+      class="color-picker gradient-color"
+      aria-label="Gradient second color"
+      x-show="showSecondaryColor"
+      x-model="element.colorSecondary"
+      @input="updateColor($event, true)"
+    />
+  </div>
+</div>

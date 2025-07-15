@@ -1,0 +1,19 @@
+<div class="select-group">
+  <label
+    for="qr-cornersDot-style"
+    id="qr-cornersDot-style-label"
+    class="body-s"
+  >
+    Internal shape style
+  </label>
+  <select
+    id="qr-cornersDot-style"
+    class="select"
+    aria-labelledby="qr-cornersDot-style-label"
+    x-model="$store.qr.state.elements.cornersDot.style"
+    @change="$dispatch('qr:update')"
+  >
+    <option value="square">Square</option>
+    <option value="dot">Dot</option>
+  </select>
+</div>

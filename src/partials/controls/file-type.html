@@ -1,0 +1,16 @@
+<div class="content-group form-group" x-data>
+  <label for="qr-file-type" id="qr-file-type-label" class="body-s">
+    File type
+  </label>
+  <select
+    id="qr-file-type"
+    class="select"
+    aria-labelledby="qr-file-type-label"
+    x-model="$store.qr.state.fileType"
+  >
+    <option value="png">PNG</option>
+    <option value="svg">SVG</option>
+    <option value="webp">WEBP</option>
+    <option value="jpeg">JPEG</option>
+  </select>
+</div>

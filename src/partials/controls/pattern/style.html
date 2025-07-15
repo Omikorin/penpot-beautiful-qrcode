@@ -1,0 +1,23 @@
+<div class="select-group">
+  <label
+    for="qr-dots-style"
+    id="qr-dots-style-label"
+    class="body-s"
+  >
+    Style
+  </label>
+  <select
+    id="qr-dots-style"
+    class="select"
+    aria-labelledby="qr-dots-style-label"
+    x-model="$store.qr.state.elements.dots.style"
+    @change="$dispatch('qr:update')"
+  >
+    <option value="square">Square</option>
+    <option value="dots">Dots</option>
+    <option value="rounded">Rounded</option>
+    <option value="extra-rounded">Extra Rounded</option>
+    <option value="classy">Classy</option>
+    <option value="classy-rounded">Classy Rounded</option>
+  </select>
+</div>

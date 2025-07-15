@@ -1,0 +1,36 @@
+<div
+  id="logo-margin-slider-control"
+  class="margin-control"
+  x-show="hasLogo"
+>
+  <label
+    for="logo-margin-slider"
+    id="logo-margin-slider-label"
+    class="body-s"
+  >
+    Logo margin
+  </label>
+  <div class="slider-group">
+    <input
+      id="logo-margin-slider"
+      type="range"
+      min="0"
+      max="20"
+      step="1"
+      aria-labelledby="logo-margin-slider-label"
+      x-model.number="$store.qr.state.logo.margin"
+      @input="updateMargin($event)"
+    />
+    <input
+      id="logo-margin-slider-value"
+      type="number"
+      min="0"
+      max="20"
+      class="input"
+      aria-labelledby="logo-margin-slider-label"
+      x-model.number="$store.qr.state.logo.margin"
+      @input="updateMargin($event)"
+      required
+    />
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="text-content-group form-group" x-data="qrContent">
+  <label for="qr-content" id="qr-content-label" class="body-s">
+    QR code content
+  </label>
+  <input
+    id="qr-content"
+    type="text"
+    maxlength="1000"
+    class="input input-full"
+    placeholder="Enter text or URL"
+    aria-labelledby="qr-content-label"
+    required
+    x-model="content"
+    @input="updateContent"
+  />
+</div>

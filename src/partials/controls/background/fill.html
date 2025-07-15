@@ -1,0 +1,20 @@
+<div class="select-group">
+  <label
+    for="qr-background-fill"
+    id="qr-background-fill-label"
+    class="body-s"
+  >
+    Fill
+  </label>
+  <select
+    id="qr-background-fill"
+    class="select"
+    aria-labelledby="qr-background-fill-label"
+    x-model="element.fill"
+    @change="updateFill($event)"
+  >
+    <option value="single">Single Color</option>
+    <option value="linear">Linear Gradient</option>
+    <option value="radial">Radial Gradient</option>
+  </select>
+</div>

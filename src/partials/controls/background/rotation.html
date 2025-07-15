@@ -1,0 +1,41 @@
+<div id="qr-background-rotation" x-show="showRotation">
+  <label
+    for="qr-background-rotation-slider"
+    id="qr-background-rotation-slider-label"
+    class="body-s"
+  >
+    Rotation
+  </label>
+  <div
+    class="slider-group"
+    x-data="numberInput"
+    data-min="0"
+    data-max="360"
+    data-step="1"
+    :data-value="element.rotation || 0"
+    @number:update="updateRotation($event)"
+  >
+    <input
+      id="qr-background-rotation-slider"
+      type="range"
+      :min="min"
+      :max="max"
+      :step="step"
+      x-model="sliderValue"
+      @input="updateFromSlider"
+      aria-labelledby="qr-background-rotation-slider-label"
+    />
+    <input
+      id="qr-background-rotation-slider-value"
+      type="number"
+      :min="min"
+      :max="max"
+      class="input"
+      x-model.number="value"
+      @input="updateFromInput"
+      @blur="validateInput"
+      aria-labelledby="qr-background-rotation-slider-label"
+      required
+    />
+  </div>
+</div>

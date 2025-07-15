@@ -1,0 +1,21 @@
+<div
+  class="content-group form-group logo-container-group"
+  x-data="logoControls"
+>
+  <label for="choose-file-btn" id="choose-file-label" class="body-s">
+    Logo
+  </label>
+  <input
+    id="choose-file-input"
+    type="file"
+    accept="image/*"
+    class="input-label-hidden"
+    tabindex="-1"
+    aria-hidden="true"
+    x-ref="fileInput"
+    @change="handleFile($event)"
+  />
+  {{> controls/logo/empty-state }}
+  {{> controls/logo/uploaded-state }}
+  {{> controls/logo/margin-control }}
+</div>

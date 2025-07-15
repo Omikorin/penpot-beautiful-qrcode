@@ -1,0 +1,32 @@
+<div id="qr-cornersDot-rotation" x-show="showRotation">
+  <label
+    for="qr-cornersDot-rotation-slider"
+    id="qr-cornersDot-rotation-slider-label"
+    class="body-s"
+  >
+    Rotation
+  </label>
+  <div class="slider-group">
+    <input
+      id="qr-cornersDot-rotation-slider"
+      aria-labelledby="qr-cornersDot-rotation-slider-label"
+      type="range"
+      min="0"
+      max="360"
+      step="1"
+      x-model.number="element.rotation"
+      @input="updateRotation($event)"
+    />
+    <input
+      id="qr-cornersDot-rotation-slider-value"
+      aria-labelledby="qr-cornersDot-rotation-slider-label"
+      type="number"
+      min="0"
+      max="360"
+      class="input"
+      x-model.number="element.rotation"
+      @input="updateRotation($event)"
+      required
+    />
+  </div>
+</div>

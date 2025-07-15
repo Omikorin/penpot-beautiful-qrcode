@@ -1,0 +1,21 @@
+<div class="color-picker-group">
+  <label for="qr-dots-color" class="body-s">Color</label>
+  <div class="color-pickers">
+    <input
+      id="qr-dots-color"
+      type="color"
+      class="color-picker"
+      x-model="element.color"
+      @input="updateColor($event)"
+    />
+    <input
+      id="qr-dots-color-2"
+      type="color"
+      class="color-picker gradient-color"
+      aria-label="Gradient second color"
+      x-show="showSecondaryColor"
+      x-model="element.colorSecondary"
+      @input="updateColor($event, true)"
+    />
+  </div>
+</div>

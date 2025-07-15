@@ -1,0 +1,24 @@
+<div class="content-group">
+  <details class="accordion">
+    <summary>
+      <span class="body-s">Pattern</span>
+      <img
+        class="accordion-icon"
+        src="/icons/chevron-down.svg"
+        alt=""
+      />
+    </summary>
+    <div
+      class="accordion-content"
+      x-data="colorControls"
+      data-type="dots"
+    >
+      <div class="accordion-controls">
+        {{> controls/pattern/style }}
+        {{> controls/pattern/fill }}
+        {{> controls/pattern/colors }}
+        {{> controls/pattern/rotation }}
+      </div>
+    </div>
+  </details>
+</div>

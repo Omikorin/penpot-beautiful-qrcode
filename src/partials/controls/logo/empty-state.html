@@ -1,0 +1,14 @@
+<button
+  id="choose-file-btn"
+  type="button"
+  class="input-full button-with-icon"
+  aria-label="Upload logo"
+  data-appearance="secondary"
+  x-show="!hasLogo"
+  @click="$refs.fileInput.click()"
+>
+  <span class="button-icon">
+    <img src="/icons/upload.svg" alt="" />
+  </span>
+  <span>Choose file</span>
+</button>
