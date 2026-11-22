@@ -1,5 +1,10 @@
 # 🎨 Penpot Beautiful QR Code
 
+> [!WARNING]
+> This plugin repository is no longer maintained. Use the
+> [Penpot Plugins monorepo](https://github.com/Omikorin/penpot-plugins) for the
+> latest version and updates.
+
 Transform ordinary QR codes into vibrant design elements directly within Penpot! This plugin allow designers to create custom, visually appealing QR codes.
 
 ![Plugin preview](screenshot.png)
